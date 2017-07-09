@@ -41,8 +41,13 @@ module.exports = function(sequelize, DataTypes) {
     completed_book: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-      }
-    });
+    },
+    progress: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    }
+  });
   return members;
 };
 
