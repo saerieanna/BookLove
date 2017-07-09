@@ -31,7 +31,7 @@ const nexmo = new Nexmo({
 
 
 // Syncing our sequelize models and then starting our express app
-db.sequelize.sync({ force: false }).then(function() {
+db.sequelize.sync({ force: true }).then(function() {
     app.listen(PORT, function() {
         console.log(`Server running http://localhost:${PORT}, Ctrl + c to stop`);
     });
