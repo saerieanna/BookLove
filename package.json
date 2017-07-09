@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/saerieanna/BookLove#readme",
   "dependencies": {
-    "nexmo": "^2.0.2"
+    "body-parser": "^1.17.2",
+    "mysql": "^2.13.0",
+    "nexmo": "^2.0.2",
+    "sequelize": "^4.2.1"
   }
 }
