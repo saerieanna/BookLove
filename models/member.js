@@ -1,7 +1,7 @@
 // If we start the table with just name, email of members, the other fiels must be allowed to be blank. We have to set in the database "created at" and "updated at" to "CURRENT_TIMESTAMP"
 
 module.exports = function(sequelize, DataTypes) {
-  var members = sequelize.define("members", {
+  var Member = sequelize.define("Member", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -35,8 +35,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     current_book: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
+      allowNull: true,
+      references: {
+          model: "books",
+          key: "id"
+      }
     },
     completed_book: {
       type: DataTypes.BOOLEAN,
@@ -48,6 +51,6 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: 0
     }
   });
-  return members;
+  return Member;
 };
 

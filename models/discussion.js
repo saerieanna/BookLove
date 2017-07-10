@@ -1,13 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
-  var discussion = sequelize.define("discussion", {
+  var Discussion = sequelize.define("Discussion", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     book_id: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "books",
+        key: "id"
+      }
     },
     chapter: {
       type: DataTypes.INTEGER,
@@ -20,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     member_id: {
       type: DataTypes.INTEGER,
       allowNull: false
-      }
+    }
   });
-  return discussion;
+  return Discussion;
 };

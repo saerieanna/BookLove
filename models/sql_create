@@ -5,3 +5,5 @@
 INSERT INTO `book_love`.`members` (`id`, `name`, `email`) VALUES ('1', 'Rebecca Palmore', 'rkpalmore@gmail.com');
 INSERT INTO `book_love`.`members` (`id`, `name`, `email`) VALUES ('2', 'Yilin Xu', 'yellen10@gmail.com');
 INSERT INTO `book_love`.`members` (`id`, `name`, `email`) VALUES ('3', 'Sarah Mandley', 'saerieanna@gmail.com');
+
+INSERT INTO `book_love`.`books` (`id`, `title`) VALUES ('1', 'Ramona the Brave');

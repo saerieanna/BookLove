@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var book = sequelize.define("book", {
+  var Book = sequelize.define("Book", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -11,5 +11,5 @@ module.exports = function(sequelize, DataTypes) {
       unique: true
     }
   });
-  return book;
+  return Book;
 };
