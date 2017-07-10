@@ -6,12 +6,12 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     book_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       unique: true
     },
-    chapter_title: {
-      type: DataTypes.STRING,
+    chapter: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       unique: true
     }

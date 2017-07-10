@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    progress: {
+    chapter: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0

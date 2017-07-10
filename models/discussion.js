@@ -7,13 +7,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     book_id: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
-    chapter_title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+    chapter: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     comment: {
       type: DataTypes.TEXT,
