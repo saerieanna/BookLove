@@ -2,11 +2,35 @@
 
 // FIRST: CREATE DATABASE book_love;
 
-INSERT INTO `book_love`.`members` (`id`, `name`, `email`) VALUES ('1', 'Rebecca Palmore', 'rkpalmore@gmail.com');
-INSERT INTO `book_love`.`members` (`id`, `name`, `email`) VALUES ('2', 'Yilin Xu', 'yellen10@gmail.com');
-INSERT INTO `book_love`.`members` (`id`, `name`, `email`) VALUES ('3', 'Sarah Mandley', 'saerieanna@gmail.com');
+INSERT INTO `book_love`.`members` (`name`, `email`) VALUES ('Rebecca Palmore', 'rkpalmore@gmail.com');
+INSERT INTO `book_love`.`members` (`name`, `email`) VALUES ('Yilin Xu', 'yellen10@gmail.com');
+INSERT INTO `book_love`.`members` (`name`, `email`) VALUES ('Sarah Mandley', 'saerieanna@gmail.com');
 
 
 // TEST DATA FOR BOOK TABLE
 
-INSERT INTO `book_love`.`books` (`id`, `title`) VALUES ('1', 'Ramona the Brave');
+INSERT INTO `book_love`.`books` (`title`) VALUES ('Ramona the Brave');
+INSERT INTO `book_love`.`books` (`title`) VALUES ('Silent Spring');
+
+// TEST DATA FOR MEMBERBOOK
+
+INSERT INTO `book_love`.`memberBooks` (`member_id`, `book_id`) VALUES ('1', '1');
+INSERT INTO `book_love`.`memberBooks` (`member_id`, `book_id`) VALUES ('2', '1');
+
+// TEST DATA FOR DISCUSSION
+
+INSERT INTO `book_love`.`discussions` (`book_id`, `chapter`, `comment`, `member_id`) VALUES ('1', '1', 'Love the opening line!', '1');
+
+// TEST DATA FOR CHAPTER
+
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '1');
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '2');
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '3');
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '4');
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '5');
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '6');
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '7');
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '8');
+INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '9');
+
+

@@ -2,11 +2,6 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Member = sequelize.define("Member", {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -50,7 +45,19 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     }
-  });
+  },
+    {
+    classMethods: {
+      associate: function(models) {
+        Member.hasMany(models.Disussion, {
+          onDelete: "cascade"
+        },
+        models.Book, models.chapter
+        );
+      }
+    }
+   });
   return Member;
 };
+
 

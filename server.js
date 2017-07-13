@@ -12,6 +12,7 @@ var PORT = process.env.PORT || 8080;
 // Dependencies
 // =============================================================|
 var bodyParser = require("body-parser");
+var setupPassport = require('./passport.js');
 var db = require("./models");
 
 // Sets up the Express app to handle data parsing
@@ -29,9 +30,13 @@ const nexmo = new Nexmo({
   apiSecret: config.apiSecret
 });
 
+//Routes
+// =============================================================|
+require("./routes/routes.js")(app);
+
 
 // Syncing our sequelize models and then starting our express app
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {
         console.log(`Server running http://localhost:${PORT}, Ctrl + c to stop`);
     });
