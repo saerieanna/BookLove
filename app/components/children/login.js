@@ -22,12 +22,6 @@ var login = React.createClass({
 							<label for="password">Password</label>
 						</div>
 					</div>
-					<div className="row">
-						<div className="input-field col s12">
-							<input id="chapter" type="number" className="validate" />
-							<label for="password">Password</label>
-						</div>
-					</div>
 					<br />
 					<center>
 						<button className="btn red lighten-2" type="submit" name="action">Connect</button>

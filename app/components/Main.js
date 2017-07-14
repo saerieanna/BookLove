@@ -23,7 +23,7 @@ var Main = React.createClass({
         </nav>
 
         <div className="col s4">
-          <h2 className="text-center red-text text-light-4">Book Love!</h2>
+          <h2 className="text-center red-text text-light-4">Book Love</h2>
         </div>
 
         {this.props.children}
