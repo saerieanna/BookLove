@@ -35,13 +35,6 @@ const nexmo = new Nexmo({
 require("./routes/routes.js")(app);
 
 
-// Syncing our sequelize models and then starting our express app
-db.sequelize.sync({ force: false }).then(function() {
-    app.listen(PORT, function() {
-        console.log(`Server running http://localhost:${PORT}, Ctrl + c to stop`);
-    });
-});
-
 app.use(express.static("./public"));
 
 // Any non API GET routes will be directed to our React App and handled by React Router
@@ -50,9 +43,10 @@ app.get("*", function(req, res) {
 });
 
 
-// -------------------------------------------------
-
-app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+// Syncing our sequelize models and then starting our express app
+db.sequelize.sync({ force: false }).then(function() {
+    app.listen(PORT, function() {
+        console.log(`Server running http://localhost:${PORT}, Ctrl + c to stop`);
+    });
 });
 
