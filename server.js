@@ -22,7 +22,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Nexmo for SMS messaging 
-var config = require("./app/config/config.js");
+var config = require("./app/config/config.json");
 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
