@@ -7,7 +7,7 @@ var login = React.createClass({
 
   	return (
 	  	<div className="login">
-			<form className="col s8">
+			<form className="col s12">
 				<div className="form-container">
 					<h3 className="red-text text-light-5">Welcome back</h3>
 					<div className="row">
