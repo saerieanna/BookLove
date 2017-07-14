@@ -32,3 +32,15 @@ h5
 {
 	position: absolute;
 }
+.enlarge{
+	width:90%;
+	margin:2.5% 5%;
+}
+.login{
+	width:60%;
+	margin-left:20%;
+}
+.register{
+	width:60%;
+	margin-left:20%;
+}

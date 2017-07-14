@@ -22,8 +22,8 @@ var Main = React.createClass({
             </div>
         </nav>
 
-        <div className="col s4 jumbotron">
-          <h2 className="text-center">Book Love!</h2>
+        <div className="col s4">
+          <h2 className="text-center red-text text-light-4">Book Love!</h2>
         </div>
 
         {this.props.children}

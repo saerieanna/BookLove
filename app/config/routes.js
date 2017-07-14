@@ -21,6 +21,7 @@ var browserHistory = router.browserHistory;
 var Main = require("../components/Main");
 var login=require("../components/children/login");
 var register=require("../components/children/register");
+var background=require("../components/children/background")
 
 
 // Export the Routes
@@ -30,7 +31,7 @@ module.exports = (
     <Route path="/" component={Main}>
 		<Route path="/register" component={register} />
 		<Route path="/login" component={login} />
-		<IndexRoute component={login} />
+		<IndexRoute component={background} />
    </Route>
   </Router>
 );
