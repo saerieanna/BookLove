@@ -4,9 +4,9 @@
 
 // FIRST: CREATE DATABASE book_love;
 
-INSERT INTO `book_love`.`members` (`name`, `email`) VALUES ('Rebecca Palmore', 'rkpalmore@gmail.com');
-INSERT INTO `book_love`.`members` (`name`, `email`) VALUES ('Yilin Xu', 'yellen10@gmail.com');
-INSERT INTO `book_love`.`members` (`name`, `email`) VALUES ('Sarah Mandley', 'saerieanna@gmail.com');
+INSERT INTO `book_love`.`members` (`first_name`, `last_name`, `email`) VALUES ('Rebecca', 'Palmore', 'rkpalmore@gmail.com');
+INSERT INTO `book_love`.`members` (`first_name`, `last_name`, `email`) VALUES ('Yilin', 'Xu', 'yellen10@gmail.com');
+INSERT INTO `book_love`.`members` (`first_name`, `last_name`, `email`) VALUES ('Sarah', 'Mandley', 'saerieanna@gmail.com');
 
 
 // TEST DATA FOR BOOK TABLE
