@@ -33,6 +33,7 @@ const nexmo = new Nexmo({
 //Routes
 // =============================================================|
 require("./routes/routes.js")(app);
+require("./routes/landing-routes.js")(app);
 
 
 app.use(express.static("./public"));

@@ -1,5 +1,7 @@
 // TEST FILE TO START QUERYING DATA
 
+console.log("Routes loaded!");
+
 var db = require("../models");
 
 module.exports = function(app) {

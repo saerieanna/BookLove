@@ -1,7 +1,7 @@
 // BORROWING FROM PLAUDIT NEEDS UPDATES FOR BOOK APP
 // WE MAY NOT NEED THIS PAGE ... 
 
-console.log("LANDING LOADED!");
+// console.log("LANDING LOADED!");
 
 $(document).ready(function(){
 
