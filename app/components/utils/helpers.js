@@ -29,7 +29,7 @@ var helper = {
   },
 
   postSaved: function(first_name, last_name, email, password, phone, favorite_book) {
-    var newAMember = { first_name: first_name, last_name: last_name, email: email, password:password, phone:phone, favorite_book:favorite_book};
+    var newMember = { first_name: first_name, last_name: last_name, email: email, password: password, phone: phone, favorite_book: favorite_book};
     return axios.post("/api/saved", newMember)
       .then(function(response) {
         console.log(response);

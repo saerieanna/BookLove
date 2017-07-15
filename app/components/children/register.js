@@ -3,7 +3,7 @@ var React = require("react");
 
 var Link = require("react-router").Link;
 
-var helpers = require("../../utils/helpers");
+var helpers = require("../utils/helpers");
 
 var register = React.createClass({
 
