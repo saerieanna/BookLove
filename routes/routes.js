@@ -50,10 +50,10 @@ module.exports = function(app) {
   });
 
   // BUT api/members/join is returning "null" -- not sure why
-  // app.get("/api/join", function(req, res) {
-  //   db.MemberBook.findAll({}).then(function(dbMember) {
-  //       res.json(dbMember);
-  //   });
-  // });
+  app.get("/api/join", function(req, res) {
+    db.MemberBook.findAll({}).then(function(dbMember) {
+        res.json(dbMember);
+    });
+  });
 
 };

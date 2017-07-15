@@ -1,5 +1,7 @@
 // BORROWING FROM PLAUDIT NEEDS UPDATES FOR BOOK APP
 
+console.log("LANDING LOADED!");
+
 $(document).ready(function(){
 
 function updatePassword(email, password){

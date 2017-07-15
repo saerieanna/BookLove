@@ -1,5 +1,7 @@
 // SEED DATA FOR MEMBER TABLE
 
+// DON'T FORGET TO DO "mysql.server start" IN YOUR TERMINAL BEFORE "node server"
+
 // FIRST: CREATE DATABASE book_love;
 
 INSERT INTO `book_love`.`members` (`name`, `email`) VALUES ('Rebecca Palmore', 'rkpalmore@gmail.com');

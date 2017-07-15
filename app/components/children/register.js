@@ -5,6 +5,35 @@ var Link = require("react-router").Link;
 
 var register = React.createClass({
 
+  // Set initial variables for the component
+  getInitialState: function() {
+  	return {
+  		first_name: "",
+  		last_name: "",
+  		email_confirm: "",
+  		password_confirm: "",
+  		phone: "",
+  		favorite_book: ""
+  	};
+  },
+
+  // Whenever we detect any change in the input, we register it
+  handleChange: function(event) {
+  	console.log("INPUT CHANGED");
+
+  // Create syntax to capture any change in the input fields
+  var newState = {};
+  newState[event.target.id] = event.target.value;
+  this.setState(newState);
+  },
+
+  // Handle the submit button, send the terms to the parent Main component
+  handleSubmit: function(event) {
+  	event.preventDefault();
+  	console.log("CLICKED");
+  	this.props.updateMain(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.favorite_book);
+  },
+
   render: function() {
   	return(
 		<div className="register">
@@ -13,11 +42,11 @@ var register = React.createClass({
 					<h3 className="red-text text-light-5">Welcome</h3>
 					<div className="row">
 						<div className="input-field col s6">
-							<input id="first_name" type="text" className="validate" />
+							<input id="first_name" type="text" value={this.state.first_name} onChange={this.handleChange} className="validate" />
 								<label>Fist Name</label>
 						</div>
 						<div className="input-field col s6">
-							<input id="last_name" type="text" className="validate" />
+							<input id="last_name" type="text" value={this.state.last_name} onChange={this.handleChange} className="validate" />
 								<label for="last_name">Last Name</label>
 						</div>
 					</div>
@@ -27,8 +56,8 @@ var register = React.createClass({
 								<label for="email">Email:</label>
 						</div>
 						<div className="input-field col s6">
-							<input id="email-confirm" type="email" className="validate" />
-								<label for="email-confirm">Email Confirmation</label>
+							<input id="email_confirm" type="email" value={this.state.email_confirm} onChange={this.handleChange} className="validate" />
+								<label for="email_confirm">Email Confirmation</label>
 						</div>
 					</div>
 					<div className="row">
@@ -37,18 +66,18 @@ var register = React.createClass({
 								<label for="password">Password</label>
 						</div>
 						<div className="input-field col s6">
-							<input id="password-confirm" type="password" className="validate" />
-								<label for="password-confirm">Password Confirmation</label>
+							<input id="password_confirm" type="password" value={this.state.password_confirm} onChange={this.handleChange} className="validate" />
+								<label for="password_confirm">Password Confirmation</label>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s6">
-							<input id="phone" type="tel" className="validate" />
+							<input id="phone" type="tel" value={this.state.phone} onChange={this.handleChange} className="validate" />
 								<label for="tel">Phone</label>
 						</div>
 						<div className="input-field col s6">
-							<input id="favorite-book" type="text" className="validate" />
-								<label for="favorite-book">Favorite Book</label>
+							<input id="favorite_book" type="text" value={this.state.favorite_book} onChange={this.handleChange} className="validate" />
+								<label for="favorite_book">Favorite Book</label>
 						</div>
 					</div>
 					<center>
