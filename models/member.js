@@ -34,10 +34,11 @@ module.exports = function(sequelize, DataTypes) {
     current_book: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-          model: "books",
-          key: "id"
-      }
+      defaultValue: 0
+      // references: {
+      //     model: "books",
+      //     key: "id"
+      // }
     },
     completed_book: {
       type: DataTypes.BOOLEAN,

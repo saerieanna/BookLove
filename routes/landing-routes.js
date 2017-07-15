@@ -4,7 +4,8 @@ var path = require("path");
 var db = require("../models");
 var passport = require('passport');
 var nodemailer = require("nodemailer");
-var bcrypt = require('bcryptjs')
+var bcrypt = require('bcryptjs');
+const goodreads = require('goodreads');
 // var config = require("./../keys.js");
     
 module.exports = function(app) {
