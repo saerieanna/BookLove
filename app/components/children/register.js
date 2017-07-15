@@ -31,13 +31,14 @@ var register = React.createClass({
   handleSubmit: function(event) {
   	event.preventDefault();
   	console.log("CLICKED");
+  	// I don't know if we want to update Main here ... 
   	this.props.updateMain(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.favorite_book);
   },
 
   render: function() {
   	return(
 		<div className="register">
-			<form className="col s12">
+			<form onSubmit={this.handleSubmit} className="col s12">
 				<div className="form-container">
 					<h3 className="red-text text-light-5">Welcome</h3>
 					<div className="row">
