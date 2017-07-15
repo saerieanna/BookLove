@@ -3,6 +3,8 @@ var React = require("react");
 
 var Link = require("react-router").Link;
 
+var helpers = require("../../utils/helpers");
+
 var register = React.createClass({
 
   // Set initial variables for the component
@@ -31,8 +33,7 @@ var register = React.createClass({
   handleSubmit: function(event) {
   	event.preventDefault();
   	console.log("CLICKED");
-  	// I don't know if we want to update Main here ... 
-  	this.props.updateMain(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.favorite_book);
+  	helpers.postSaved(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.favorite_book)
   },
 
   render: function() {

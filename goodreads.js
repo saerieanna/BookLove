@@ -31,6 +31,6 @@ let sample_user = 4085451
   // }
 };
 
-// http.createServer(onRequest).listen(3000);
+http.createServer(onRequest).listen(3000);
 
-// console.log('server started on port 3000');
+console.log('server started on port 3000');

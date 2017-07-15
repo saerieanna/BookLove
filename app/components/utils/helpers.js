@@ -19,6 +19,22 @@ var helper = {
         }
     });
   },
+
+  getSaved: function() {
+    return axios.get("/api/saved")
+      .then(function(results) {
+        console.log("axios results", results);
+        return results;
+      });
+  },
+
+  postSaved: function(first_name, last_name, email, password, phone, favorite_book) {
+    var newAMember = { first_name: first_name, last_name: last_name, email: email, password:password, phone:phone, favorite_book:favorite_book};
+    return axios.post("/api/saved", newMember)
+      .then(function(response) {
+        console.log(response);
+      });
+  },
 };
 
 module.exports = helper;
