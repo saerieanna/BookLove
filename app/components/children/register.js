@@ -22,18 +22,17 @@ var register = React.createClass({
   // Whenever we detect any change in the input, we register it
   handleChange: function(event) {
   	console.log("INPUT CHANGED");
-
-  // Create syntax to capture any change in the input fields
-  var newState = {};
-  newState[event.target.id] = event.target.value;
-  this.setState(newState);
+  	// Capture any change in the input fields
+  	var newState = {};
+  	newState[event.target.id] = event.target.value;
+  	this.setState(newState);
   },
 
-  // Handle the submit button, send the terms to the parent Main component
+  // Handle the submit button
   handleSubmit: function(event) {
   	event.preventDefault();
   	console.log("CLICKED");
-  	helpers.postSaved(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.favorite_book)
+  	helpers.postNewMember(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.favorite_book)
   },
 
   render: function() {

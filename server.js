@@ -13,6 +13,9 @@ var PORT = process.env.PORT || 8080;
 // =============================================================|
 var bodyParser = require("body-parser");
 var setupPassport = require('./passport.js');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var flash=require("connect-flash");
 var db = require("./models");
 
 // Sets up the Express app to handle data parsing
@@ -30,13 +33,20 @@ const nexmo = new Nexmo({
   apiSecret: config.apiSecret
 });
 
+//Setting up login session
+app.use(cookieParser())
+app.use(session({ secret: 'friedbanana', resave: false, saveUninitialized: false }))
+app.use(flash());
+
+app.use(express.static("./public"));
+
+setupPassport(app);
+
 //Routes
 // =============================================================|
 require("./routes/routes.js")(app);
 require("./routes/landing-routes.js")(app);
 
-
-app.use(express.static("./public"));
 
 // Any non API GET routes will be directed to our React App and handled by React Router
 app.get("*", function(req, res) {
