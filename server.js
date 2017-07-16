@@ -25,13 +25,13 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Nexmo for SMS messaging 
-var config = require("./app/config/config.js");
+// var config = require("./app/config/config.js");
 
-const Nexmo = require('nexmo');
-const nexmo = new Nexmo({
-  apiKey: config.apiKey,
-  apiSecret: config.apiSecret
-});
+// const Nexmo = require('nexmo');
+// const nexmo = new Nexmo({
+//   apiKey: config.apiKey,
+//   apiSecret: config.apiSecret
+// });
 
 //Setting up login session
 app.use(cookieParser())
