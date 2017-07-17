@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Chapter = sequelize.define("Chapter", {
     book_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "books",
         key: "id"
