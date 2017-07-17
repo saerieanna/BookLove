@@ -1,7 +1,6 @@
 // Borrowing from 061717 Address-Finder-Solution
 var axios = require("axios");
 
-
 var helper = {
 
   getNewMember: function() {
@@ -19,15 +18,6 @@ var helper = {
         console.log(response);
       });
   },
-
-  // I don't think we need this because we are not creating new member; we just need to let Passport check the email user inputs against the Member table password
-  // postPassword: function(email, password) {
-  //   var newMember = { email: email, password: password};
-  //   return axios.post("/api/password", newMember)
-  //     .then(function(response) {
-  //       console.log(response);
-  //     });
-  // },
 
 };
 

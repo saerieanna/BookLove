@@ -15,7 +15,7 @@ var bodyParser = require("body-parser");
 var setupPassport = require('./passport.js');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
-var flash=require("connect-flash");
+var flash = require("connect-flash");
 var db = require("./models");
 
 // Sets up the Express app to handle data parsing
@@ -38,7 +38,7 @@ app.use(cookieParser())
 app.use(session({ secret: 'friedbanana', resave: false, saveUninitialized: false }))
 app.use(flash());
 
-app.use(express.static("./public"));
+app.use(express.static(process.cwd() + "/public"));
 
 setupPassport(app);
 

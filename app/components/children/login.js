@@ -1,5 +1,6 @@
 var React = require("react");
 
+var helpers = require("../utils/helpers");
 
 var login = React.createClass({
 
@@ -21,30 +22,22 @@ var login = React.createClass({
   this.setState(newState);
   },
 
-  // Handle the submit button
-  handleSubmit: function(event) {
-  	event.preventDefault();
-  	console.log("CLICKED");
-  	// I don't know if we need any helper function here. We need to let Passport handle the checking.
-  	// helpers.postPassword(this.state.email, this.state.password)
-  },
-
   render: function() {
 
   	return (
 	  	<div className="login">
-			<form onSubmit={this.handleSubmit}className="col s12">
+			<form action="/login" method="post" className="col s12">
 				<div className="form-container">
 					<h3 className="red-text text-light-5">Welcome back</h3>
 					<div className="row">
 						<div className="input-field col s12">
-							<input id="email" type="email" value={this.state.email} onChange={this.handleChange} className="validate" />
+							<input id="email" name="username" type="email" value={this.state.email} onChange={this.handleChange} className="validate" />
 							<label for="email">Email</label>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<input id="password" type="password" value={this.state.password} onChange={this.handleChange} className="validate" />
+							<input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} className="validate" />
 							<label for="password">Password</label>
 						</div>
 					</div>

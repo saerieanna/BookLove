@@ -11,26 +11,21 @@ var randomstring = require("randomstring");
     
 module.exports = function(app) {
 
-    // CHECK MEMBER EMAIL AND PASSWORD WITH THOSE FIELDS STORED IN DATABASE
+    // MAYBE ADJUST SUCCESS REDIRECT?
     app.post('/login',
         passport.authenticate('local', 
-            {failureRedirect: '/',
+            {failureRedirect: '/login',
             failureFlash: true}),
         function(req, res) {
-            console.log("We are in the app post login");
-            res.redirect('/banana');
+            res.redirect('/');
         });
-
-    app.get("/login", function(req, res) { //catches in case passport redirects to the default /login if any session issues occur, redirects to our own login
-        res.redirect('/');
-    });
-
 
     // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
     app.get("/shelf", function(req, res) {
 
        let key = 'o5rVqairFPY3P9AdqQZrgw'
        let secret = 'XC3z0WhDPoVTilPJja3qo5w8skObpMHWKJO8cG1e1o'
+       // Need to add in array of users?
        let sample_user = 4085451;
        console.log("this is the selected user's shelf!");
        let dump = json => {
@@ -43,7 +38,7 @@ module.exports = function(app) {
        }
 
        gr = goodreads.client({ 'key': key, 'secret': secret });
-       let shelfOptions = { 'userID': sample_user, 'shelf': 'web', 'page': 1, 'per_page': 100 }
+       let shelfOptions = { 'userID': sample_user, 'shelf': 'web', 'page': 1, 'per_page': 10 }
 
        let getShelf = gr.getSingleShelf(shelfOptions, dump);
        return getShelf
@@ -51,6 +46,7 @@ module.exports = function(app) {
 
 
     // UPDATE THE MEMBER DATABASE AT REGISTRATION
+    // ADD: USER FEEDBACK IF BAD EMAIL, OR EMAIL ALREADY REGISTERED
     app.post("/api/new_member", function(req, res) {
         var hashedPassword;
         var salt = bcrypt.genSaltSync(10);
