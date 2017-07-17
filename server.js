@@ -24,13 +24,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Nexmo for SMS messaging 
-var keys = require("./app/config/keys.js");
+// DEVELOPMENT CONNECTION: NEXMO
+// var keys = require("./app/config/keys.js");
 
+// const Nexmo = require('nexmo');
+// const nexmo = new Nexmo({
+//   apiKey: keys.apiKey,
+//   apiSecret: keys.apiSecret
+// });
+
+// PRODUCTION CONNECTION: NEXMO
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
-  apiKey: keys.apiKey,
-  apiSecret: keys.apiSecret
+  apiKey: process.env.h_apiKey,
+  apiSecret: process.env.h_apiSecret
 });
 
 // TESTING NEXMO

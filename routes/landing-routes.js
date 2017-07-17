@@ -6,8 +6,9 @@ var passport = require('passport');
 var nodemailer = require("nodemailer");
 var bcrypt = require('bcryptjs');
 const goodreads = require('goodreads');
-var randomstring = require("randomstring"); 
-var keys = require("../app/config/keys.js");
+var randomstring = require("randomstring");
+// DEVELOPMENT CONNECTION: GOODREADS
+// var keys = require("../app/config/keys.js");
     
 module.exports = function(app) {
 
@@ -25,8 +26,13 @@ module.exports = function(app) {
 
        // let key = 'o5rVqairFPY3P9AdqQZrgw'
        // let secret = 'XC3z0WhDPoVTilPJja3qo5w8skObpMHWKJO8cG1e1o'
-       let key = keys.grkey
-       let secret = keys.grsecret
+       // DEVELOPMENT CONNECTION
+       // let key = keys.grkey
+       // let secret = keys.grsecret
+
+       // PRODUCTION CONNECTION
+       let key = process.env.h_grkey
+       let secret = process.env.h_grsecret
        // Need to add in array of users?
        let sample_user = 4085451;
        console.log("this is the selected user's shelf!");
