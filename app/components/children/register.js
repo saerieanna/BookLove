@@ -48,37 +48,37 @@ var register = React.createClass({
 						</div>
 						<div className="input-field col s6">
 							<input id="last_name" type="text" value={this.state.last_name} onChange={this.handleChange} className="validate" />
-								<label for="last_name">Last Name</label>
+								<label>Last Name</label>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s6">
-							<input id="email" type="email" class="validate" />
-								<label for="email">Email:</label>
+							<input id="email" type="email" className="validate" />
+								<label>Email:</label>
 						</div>
 						<div className="input-field col s6">
 							<input id="email_confirm" type="email" value={this.state.email_confirm} onChange={this.handleChange} className="validate" />
-								<label for="email_confirm">Email Confirmation</label>
+								<label>Email Confirmation</label>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s6">
 							<input id="password" type="password" className="validate" />
-								<label for="password">Password</label>
+								<label>Password</label>
 						</div>
 						<div className="input-field col s6">
 							<input id="password_confirm" type="password" value={this.state.password_confirm} onChange={this.handleChange} className="validate" />
-								<label for="password_confirm">Password Confirmation</label>
+								<label>Password Confirmation</label>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s6">
 							<input id="phone" type="tel" value={this.state.phone} onChange={this.handleChange} className="validate" />
-								<label for="tel">Phone</label>
+								<label>Phone</label>
 						</div>
 						<div className="input-field col s6">
 							<input id="favorite_book" type="text" value={this.state.favorite_book} onChange={this.handleChange} className="validate" />
-								<label for="favorite_book">Favorite Book</label>
+								<label>Favorite Book</label>
 						</div>
 					</div>
 					<center>

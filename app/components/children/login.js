@@ -32,13 +32,13 @@ var login = React.createClass({
 					<div className="row">
 						<div className="input-field col s12">
 							<input id="email" name="username" type="email" value={this.state.email} onChange={this.handleChange} className="validate" />
-							<label for="email">Email</label>
+							<label>Email</label>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
 							<input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} className="validate" />
-							<label for="password">Password</label>
+							<label>Password</label>
 						</div>
 					</div>
 					<br />
