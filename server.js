@@ -25,13 +25,25 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Nexmo for SMS messaging 
-// var config = require("./app/config/config.js");
+var keys = require("./app/config/keys.js");
 
-// const Nexmo = require('nexmo');
-// const nexmo = new Nexmo({
-//   apiKey: config.apiKey,
-//   apiSecret: config.apiSecret
-// });
+const Nexmo = require('nexmo');
+const nexmo = new Nexmo({
+  apiKey: keys.apiKey,
+  apiSecret: keys.apiSecret
+});
+
+// TESTING NEXMO
+// nexmo.message.sendSms(
+//   12013517019, '13125604191', 'Hey girl!',
+//     (err, responseData) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         console.dir(responseData);
+//       }
+//     }
+//  );
 
 //Setting up login session
 app.use(cookieParser())

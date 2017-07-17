@@ -15,7 +15,7 @@ var register = React.createClass({
   		email_confirm: "",
   		password_confirm: "",
   		phone: "",
-  		goodreads_URL: "",
+  		goodreads_url: "",
   		favorite_genre: "",
   		favorite_book: ""
   	};
@@ -34,7 +34,7 @@ var register = React.createClass({
   handleSubmit: function(event) {
   	event.preventDefault();
   	console.log("CLICKED");
-  	helpers.postNewMember(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.goodreads_URL, this.state.favorite_genre, this.state.favorite_book)
+  	helpers.postNewMember(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.goodreads_url, this.state.favorite_genre, this.state.favorite_book)
   },
 
   render: function() {
@@ -79,7 +79,7 @@ var register = React.createClass({
 								<label>Phone</label>
 						</div>
 						<div className="input-field col s6">
-							<input id="goodreads_URL" type="url" value={this.state.goodreads_URL} onChange={this.handleChange} className="validate" />
+							<input id="goodreads_url" type="url" value={this.state.goodreads_url} onChange={this.handleChange} className="validate" />
 								<label>Goodreads Link</label>
 						</div>
 					</div>
