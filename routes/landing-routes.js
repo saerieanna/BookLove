@@ -7,9 +7,10 @@ var nodemailer = require("nodemailer");
 var bcrypt = require('bcryptjs');
 const goodreads = require('goodreads');
 var randomstring = require("randomstring");
-// DEVELOPMENT CONNECTION: GOODREADS
-// var keys = require("../app/config/keys.js");
-    
+// DEVELOPMENT CONNECTION
+// =============================================================|
+var keys = require("../app/config/keys.js");
+ 
 module.exports = function(app) {
 
     // MAYBE ADJUST SUCCESS REDIRECT?
@@ -23,16 +24,16 @@ module.exports = function(app) {
 
     // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
     app.get("/shelf", function(req, res) {
-
-       // let key = 'o5rVqairFPY3P9AdqQZrgw'
-       // let secret = 'XC3z0WhDPoVTilPJja3qo5w8skObpMHWKJO8cG1e1o'
        // DEVELOPMENT CONNECTION
-       // let key = keys.grkey
-       // let secret = keys.grsecret
+       // =============================================================|
+       let key = keys.grkey
+       let secret = keys.grsecret
 
        // PRODUCTION CONNECTION
-       let key = process.env.h_grkey
-       let secret = process.env.h_grsecret
+       // =============================================================|
+       // let key = process.env.h_grkey
+       // let secret = process.env.h_grsecret
+
        // Need to add in array of users?
        let sample_user = 4085451;
        console.log("this is the selected user's shelf!");

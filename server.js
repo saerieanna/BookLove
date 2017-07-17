@@ -25,20 +25,20 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // DEVELOPMENT CONNECTION: NEXMO
-// var keys = require("./app/config/keys.js");
+var keys = require("./app/config/keys.js");
 
-// const Nexmo = require('nexmo');
-// const nexmo = new Nexmo({
-//   apiKey: keys.apiKey,
-//   apiSecret: keys.apiSecret
-// });
-
-// PRODUCTION CONNECTION: NEXMO
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
-  apiKey: process.env.h_apiKey,
-  apiSecret: process.env.h_apiSecret
+  apiKey: keys.apiKey,
+  apiSecret: keys.apiSecret
 });
+
+// PRODUCTION CONNECTION: NEXMO
+// const Nexmo = require('nexmo');
+// const nexmo = new Nexmo({
+//   apiKey: process.env.h_apiKey,
+//   apiSecret: process.env.h_apiSecret
+// });
 
 // TESTING NEXMO
 // nexmo.message.sendSms(
@@ -74,7 +74,7 @@ app.get("*", function(req, res) {
 
 
 // Syncing our sequelize models and then starting our express app
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {
         console.log(`Server running http://localhost:${PORT}, Ctrl + c to stop`);
     });
