@@ -59,8 +59,8 @@ module.exports = function(app) {
             console.log(data);
             if(data){
                 var member_id = data.dataValues.id;
-                console.log("DATA VALUES:" + data.dataValues.id);
-                console.log("MEMBER ID: " + member_id);
+                // console.log("DATA VALUES:" + data.dataValues.id);
+                // console.log("MEMBER ID: " + member_id);
                 db.Member.findOne({
                     where:{
                         id: member_id
@@ -70,6 +70,8 @@ module.exports = function(app) {
                         db.Member.update({
                             phone: req.body.phone,
                             password: hashedPassword,
+                            goodreads_url: req.body.goodreads_url,
+                            favorite_genre: req.body.favorite_genre,
                             favorite_book: req.body.favorite_book
                         }, {
                             where: {

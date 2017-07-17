@@ -11,8 +11,8 @@ var helper = {
       });
   },
 
-  postNewMember: function(first_name, last_name, email, password, phone, favorite_book) {
-    var newMember = { first_name: first_name, last_name: last_name, email: email, password: password, phone: phone, favorite_book: favorite_book};
+  postNewMember: function(first_name, last_name, email, password, phone, goodreads_url, favorite_genre, favorite_book) {
+    var newMember = { first_name: first_name, last_name: last_name, email: email, password: password, phone: phone, goodreads_url: goodreads_url, favorite_genre: favorite_genre, favorite_book: favorite_book};
     return axios.post("/api/new_member", newMember)
       .then(function(response) {
         console.log(response);

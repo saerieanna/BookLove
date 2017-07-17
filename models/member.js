@@ -19,6 +19,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
+    goodreads_url: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     favorite_book: {
       type: DataTypes.STRING,
       allowNull: true
@@ -35,10 +39,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0
-      // references: {
-      //     model: "books",
-      //     key: "id"
-      // }
     },
     completed_book: {
       type: DataTypes.BOOLEAN,
