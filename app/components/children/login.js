@@ -2,10 +2,31 @@ var React = require("react");
 
 
 var login = React.createClass({
+	getInitialState: function() {
+	  	return {
+	  		email: "",
+	  		password: "",
+	  	};
+	  },
 
-  render: function() {
+  // Whenever we detect any change in the input, we register it
+  	handleChange: function(event) {
+  		console.log("INPUT CHANGED");
 
-  	return (
+	  // Create syntax to capture any change in the input fields
+		var newState = {};
+	 	newState[event.target.id] = event.target.value;
+	  	this.setState(newState);
+	  	},
+
+	  // Handle the submit button, send the terms to the parent Main component
+	handleSubmit: function(event) {
+	  	event.preventDefault();
+	  	console.log("CLICKED");
+	  	},
+
+	render: function() {
+		return (
 	  	<div className="login">
 			<form className="col s12">
 				<div className="form-container">

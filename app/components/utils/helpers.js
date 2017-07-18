@@ -19,6 +19,19 @@ var helper = {
         }
     });
   },
+  
+  handleClick: function(e){
+    e.preventDefault();
+    if(){
+      this.props.router.route.replace('bookselect')
+    }else{
+      this.props.router.route.replace('commentChapter')
+    }
+  },
+
+ checkCurrentbook: function(){
+
+ },
 
   getSaved: function() {
     return axios.get("/api/saved")
