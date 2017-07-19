@@ -1,5 +1,6 @@
 var React = require("react");
 
+var helpers = require("../utils/helpers");
 
 var login = React.createClass({
 	getInitialState: function() {
@@ -12,6 +13,26 @@ var login = React.createClass({
   // Whenever we detect any change in the input, we register it
   	handleChange: function(event) {
   		console.log("INPUT CHANGED");
+
+  // Set initial variables for the component
+  getInitialState: function() {
+  	return {
+  		email: "",
+  		password: ""
+  	};
+  },
+
+  // Whenever we detect any change in the input, we register it
+  handleChange: function(event) {
+  	console.log("INPUT CHANGED");
+
+  // Capture any change in the input fields
+  var newState = {};
+  newState[event.target.id] = event.target.value;
+  this.setState(newState);
+  },
+
+  render: function() {
 
 	  // Create syntax to capture any change in the input fields
 		var newState = {};
@@ -28,19 +49,19 @@ var login = React.createClass({
 	render: function() {
 		return (
 	  	<div className="login">
-			<form className="col s12">
+			<form action="/login" method="post" className="col s12">
 				<div className="form-container">
 					<h3 className="red-text text-light-5">Welcome back</h3>
 					<div className="row">
 						<div className="input-field col s12">
-							<input id="email" type="email" className="validate" />
-							<label for="email">Email</label>
+							<input id="email" name="username" type="email" value={this.state.email} onChange={this.handleChange} className="validate" />
+							<label>Email</label>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<input id="password" type="password" className="validate" />
-							<label for="password">Password</label>
+							<input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} className="validate" />
+							<label>Password</label>
 						</div>
 					</div>
 					<br />
@@ -48,7 +69,7 @@ var login = React.createClass({
 						<button className="btn red lighten-2" type="submit" name="action">Connect</button>
 						<br />
 						<br />
-						<a href="">Forgotten password?</a>
+						<a href="">Forgot password?</a>
 					</center>
 				</div>
 			</form>

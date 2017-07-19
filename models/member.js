@@ -2,10 +2,13 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Member = sequelize.define("Member", {
-    name: {
+    first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
@@ -13,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
       unique: true
     },
     phone: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    goodreads_url: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -31,10 +38,7 @@ module.exports = function(sequelize, DataTypes) {
     current_book: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-          model: "books",
-          key: "id"
-      }
+      defaultValue: 0
     },
     completed_book: {
       type: DataTypes.BOOLEAN,
@@ -44,6 +48,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
+    },
+    photo_path: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   },
     {

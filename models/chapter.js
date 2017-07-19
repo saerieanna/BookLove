@@ -20,7 +20,8 @@ module.exports = function(sequelize, DataTypes) {
       // If Chapter is deleted, Discussion should be deleted, but not Book
       associate: function(models) {
         Chapter.hasMany(models.Book, models.Discussion, {
-          onDelete: "cascade"
+          onDelete: "set null",
+          onUpdate: "cascade"
         });
       }
     }

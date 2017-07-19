@@ -13,6 +13,9 @@ var PORT = process.env.PORT || 8080;
 // =============================================================|
 var bodyParser = require("body-parser");
 var setupPassport = require('./passport.js');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var flash = require("connect-flash");
 var db = require("./models");
 
 // Sets up the Express app to handle data parsing
@@ -21,22 +24,48 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Nexmo for SMS messaging 
-var config = require("./app/config/config.js");
+// DEVELOPMENT CONNECTION: NEXMO
+var keys = require("./app/config/keys.js");
 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
-  apiKey: config.apiKey,
-  apiSecret: config.apiSecret
+  apiKey: keys.apiKey,
+  apiSecret: keys.apiSecret
 });
+
+// PRODUCTION CONNECTION: NEXMO
+// const Nexmo = require('nexmo');
+// const nexmo = new Nexmo({
+//   apiKey: process.env.h_apiKey,
+//   apiSecret: process.env.h_apiSecret
+// });
+
+// TESTING NEXMO
+// nexmo.message.sendSms(
+//   12013517019, '13125604191', 'Hey girl!',
+//     (err, responseData) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         console.dir(responseData);
+//       }
+//     }
+//  );
+
+//Setting up login session
+app.use(cookieParser())
+app.use(session({ secret: 'friedbanana', resave: false, saveUninitialized: false }))
+app.use(flash());
+
+app.use(express.static(process.cwd() + "/public"));
+
+setupPassport(app);
 
 //Routes
 // =============================================================|
 require("./routes/routes.js")(app);
 require("./routes/landing-routes.js")(app);
 
-
-app.use(express.static("./public"));
 
 // Any non API GET routes will be directed to our React App and handled by React Router
 app.get("*", function(req, res) {
