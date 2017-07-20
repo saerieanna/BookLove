@@ -13,13 +13,17 @@ module.exports = function(app) {
   });
 
   app.get("/api/members/:email", function(req, res) {
-    console.log("Backend has been called")
     db.Member.findOne({
         where: {
             email: req.params.email
         },
-    }).then(function(res) {
-      console.log("This is the member" + res);
+    }).then(function(result) {
+        var book_associate=JSON.parse(JSON.stringify(result)).current_book
+        if (book_associate===0){
+          res.json(false)
+        }else{
+          res.json(true)
+        }
     });
   });
 

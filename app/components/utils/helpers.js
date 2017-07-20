@@ -14,12 +14,14 @@ var helper = {
       });
   },
 
-  redirectRoute: function(event,email) {
+  redirect: function(event,email,history) {
       event.preventDefault();
       console.log("email: "+ email);
-      axios.get("/api/members/${this.state.email}", function(err,res){
+      axios.get("/api/members/"+email).then(function(res){
         if(res){
-          alert("succeed")
+          history.push("vote")
+        }else{
+          history.push("discuss")
         }
       });
   },

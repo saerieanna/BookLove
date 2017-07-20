@@ -11,8 +11,8 @@ var login = React.createClass({
 	  	};
 	},
 
-	testMethod : function(e){
-		helpers.redirectRoute(e, this.state.email);
+	redirectRoute : function(e){
+		helpers.redirect(e, this.state.email,this.props.history);
 	},
 
   // Whenever we detect any change in the input, we register it
@@ -27,9 +27,6 @@ var login = React.createClass({
 	render: function() {
 		return (
 	  	<div className="login">
-
-	  		<button onClick={this.testMethod}> TESTING </button>
-
 
 			<form action="/login" method="post" className="col s12">
 				<div className="form-container">
@@ -48,7 +45,7 @@ var login = React.createClass({
 					</div>
 					<br />
 					<center>
-						<button className="btn red lighten-2" type="submit" name="action" onClick={this.testMethod}>Connect</button>
+						<button className="btn red lighten-2" type="submit" name="action" onClick={this.redirectRoute}>Connect</button>
 						<br />
 						<br />
 						<a href="">Forgot password?</a>
