@@ -19,7 +19,7 @@ module.exports = function(app) {
             {failureRedirect: '/login',
             failureFlash: true}),
         function(req, res) {
-            res.redirect('/');
+            console.log("login checked")
         });
 
     // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
@@ -95,6 +95,3 @@ module.exports = function(app) {
         });
     });
 };
-
-
-

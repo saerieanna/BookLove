@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     book_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      // Sequelize version 4 does not allow for this syntax. 
       references: {
         model: "books",
         key: "id"

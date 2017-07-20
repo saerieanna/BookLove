@@ -2,12 +2,27 @@
 var axios = require("axios");
 
 var helper = {
+  getSaved: function() {
+    return axios.get("/api/saved")
+  },
 
   getNewMember: function() {
     return axios.get("/api/new_member")
       .then(function(results) {
         console.log("axios results", results);
         return results;
+      });
+  },
+
+  redirect: function(event,email,history) {
+      event.preventDefault();
+      console.log("email: "+ email);
+      axios.get("/api/members/"+email).then(function(res){
+        if(res){
+          history.push("vote")
+        }else{
+          history.push("discuss")
+        }
       });
   },
 
@@ -22,4 +37,3 @@ var helper = {
 };
 
 module.exports = helper;
-

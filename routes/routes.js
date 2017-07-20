@@ -12,13 +12,18 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/members/:id", function(req, res) {
+  app.get("/api/members/:email", function(req, res) {
     db.Member.findOne({
         where: {
-            id: req.params.id
+            email: req.params.email
         },
-    }).then(function(dbMember) {
-      res.json(dbMember);
+    }).then(function(result) {
+        var book_associate=JSON.parse(JSON.stringify(result)).current_book
+        if (book_associate===0){
+          res.json(false)
+        }else{
+          res.json(true)
+        }
     });
   });
 

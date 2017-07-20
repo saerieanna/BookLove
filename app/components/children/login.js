@@ -4,28 +4,30 @@ var helpers = require("../utils/helpers");
 
 var login = React.createClass({
 
-  // Set initial variables for the component
-  getInitialState: function() {
-  	return {
-  		email: "",
-  		password: ""
-  	};
-  },
+	getInitialState: function() {
+	  	return {
+	  		email: "",
+	  		password: "",
+	  	};
+	},
+
+	redirectRoute : function(e){
+		helpers.redirect(e, this.state.email,this.props.history);
+	},
 
   // Whenever we detect any change in the input, we register it
-  handleChange: function(event) {
-  	console.log("INPUT CHANGED");
+  	handleChange: function(event) {
+	  	console.log("INPUT CHANGED");
+		// Capture any change in the input fields
+		var newState = {};
+		newState[event.target.id] = event.target.value;
+		this.setState(newState);
+  	},
 
-  // Capture any change in the input fields
-  var newState = {};
-  newState[event.target.id] = event.target.value;
-  this.setState(newState);
-  },
-
-  render: function() {
-
-  	return (
+	render: function() {
+		return (
 	  	<div className="login">
+
 			<form action="/login" method="post" className="col s12">
 				<div className="form-container">
 					<h3 className="red-text text-light-5">Welcome back</h3>
@@ -43,7 +45,7 @@ var login = React.createClass({
 					</div>
 					<br />
 					<center>
-						<button className="btn red lighten-2" type="submit" name="action">Connect</button>
+						<button className="btn red lighten-2" type="submit" name="action" onClick={this.redirectRoute}>Connect</button>
 						<br />
 						<br />
 						<a href="">Forgot password?</a>

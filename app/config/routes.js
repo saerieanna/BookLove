@@ -22,7 +22,8 @@ var Main = require("../components/Main");
 var login=require("../components/children/login");
 var register=require("../components/children/register");
 var vote = require("../components/children/vote");
-var background=require("../components/children/background")
+var background=require("../components/children/background");
+var profile=require("../components/children/profile");
 
 // Export the Routes
 module.exports = (
@@ -32,7 +33,9 @@ module.exports = (
 		<Route path="/register" component={register} />
 		<Route path="/login" component={login} />
 		<Route path="/vote" component={vote} />
+		<Route path="/profile" component={profile} />
 		<IndexRoute component={background} />
    </Route>
   </Router>
 );
+
