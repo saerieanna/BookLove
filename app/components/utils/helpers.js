@@ -2,36 +2,25 @@
 var axios = require("axios");
 
 var helper = {
-
-      if (response) {
-        return response.data; 
-      } else {
-        console.log("NO RESULTS");
-        return "";
-        }
-    });
-  },
-  
-  handleClick: function(e){
-    e.preventDefault();
-    if(){
-      this.props.router.route.replace('bookselect')
-    }else{
-      this.props.router.route.replace('commentChapter')
-    }
-  },
-
- checkCurrentbook: function(){
-
- },
-
   getSaved: function() {
     return axios.get("/api/saved")
+  },
+
   getNewMember: function() {
     return axios.get("/api/new_member")
       .then(function(results) {
         console.log("axios results", results);
         return results;
+      });
+  },
+
+  redirectRoute: function(event,email) {
+      event.preventDefault();
+      console.log("email: "+ email);
+      axios.get("/api/members/${this.state.email}", function(err,res){
+        if(res){
+          alert("succeed")
+        }
       });
   },
 

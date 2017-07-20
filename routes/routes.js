@@ -12,13 +12,14 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/members/:id", function(req, res) {
+  app.get("/api/members/:email", function(req, res) {
+    console.log("Backend has been called")
     db.Member.findOne({
         where: {
-            id: req.params.id
+            email: req.params.email
         },
-    }).then(function(dbMember) {
-      res.json(dbMember);
+    }).then(function(res) {
+      console.log("This is the member" + res);
     });
   });
 
