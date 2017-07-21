@@ -3,18 +3,18 @@ module.exports = function(sequelize, DataTypes) {
     member_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-          model: "members",
-          key: "id"
-      }
+      // references: {
+      //     model: "members",
+      //     key: "id"
+      // }
     },
     book_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "books",
-        key: "id"
-      }
+      // references: {
+      //   model: "books",
+      //   key: "id"
+      // }
      }
     },
     {

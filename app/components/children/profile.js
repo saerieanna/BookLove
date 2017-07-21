@@ -45,14 +45,14 @@ var profile = React.createClass({
   render: function() {
   	return(
   		<div className="container teal lighten-2">
-  			<Image src='/assets/imgs/profilePhotos/RebeccaPalmore.png' size='small' shape='circular' centered />
+  			<Image src={this.state.photo_path} size='small' shape='circular' centered />
           	<Progress value='3' total='5' progress='ratio' indicating />
   			<List animated>
   				<List.Item icon='book' content='I am reading [book_title]' />
     			<List.Item icon='marker' content='Chicago, IL' />
-    			<List.Item icon='mail' content={<a href='mailto:rkpalmore@gmail.com'>rkpalmore@gmail.com</a>} />
-    			<List.Item icon='heart' content='My favorite book: [favorite_book]' />
-    			<List.Item icon='linkify' content={<a href='https://www.goodreads.com/user/show/69348922-rebecca'>goodreads</a>} />
+    			<List.Item icon='mail' content={this.state.email}/>
+    			<List.Item icon='heart' content={this.state.favorite_book} />
+    			<List.Item icon='linkify' content={this.state.goodreads_url} />
   			</List>
 		</div>
 		)
