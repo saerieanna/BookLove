@@ -28,13 +28,15 @@ if (PORT === 8080) {
 var keys = require("./app/config/keys.js");
 } else {
 	console.log("Heroku connection");
-	var keys = null;
+	var keys = process.env
 }
 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
-  apiKey: keys.apiKey || process.env.h_apiKey,
-  apiSecret: keys.apiSecret || process.env.h_apiSecret
+	  apiKey: keys.apiKey,
+  	  apiSecret: keys.apiSecret
+  // apiKey: keys.apiKey || process.env.h_apiKey,
+  // apiSecret: keys.apiSecret || process.env.h_apiSecret
 });
 
 // TESTING NEXMO
