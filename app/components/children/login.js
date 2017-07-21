@@ -11,10 +11,6 @@ var login = React.createClass({
 	  	};
 	},
 
-	redirectRoute : function(e){
-		helpers.redirect(e, this.state.email,this.props.history);
-	},
-
   // Whenever we detect any change in the input, we register it
   	handleChange: function(event) {
 	  	console.log("INPUT CHANGED");
@@ -23,6 +19,10 @@ var login = React.createClass({
 		newState[event.target.id] = event.target.value;
 		this.setState(newState);
   	},
+
+  	redirectRoute : function(e){
+		helpers.redirect(e, this.state.email,this.props.history);
+	},
 
 	render: function() {
 		return (

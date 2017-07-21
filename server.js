@@ -1,7 +1,6 @@
 // =============================================================|
 // Server.js - This file is the initial starting point for the Node/Express server.
 // =============================================================|
-
 var express = require("express");
 
 // Sets up the Express App
@@ -25,20 +24,14 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // DEVELOPMENT CONNECTION: NEXMO
+// Use an if statement here to check whether "env variables" are defined
 var keys = require("./app/config/keys.js");
 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
-  apiKey: keys.apiKey,
-  apiSecret: keys.apiSecret
+  apiKey: keys.apiKey || process.env.h_apiKey,
+  apiSecret: keys.apiSecret || process.env.h_apiSecret
 });
-
-// PRODUCTION CONNECTION: NEXMO
-// const Nexmo = require('nexmo');
-// const nexmo = new Nexmo({
-//   apiKey: process.env.h_apiKey,
-//   apiSecret: process.env.h_apiSecret
-// });
 
 // TESTING NEXMO
 // nexmo.message.sendSms(

@@ -13,21 +13,21 @@ var keys = require("../app/config/keys.js");
  
 module.exports = function(app) {
 
-    // MAYBE ADJUST SUCCESS REDIRECT?
     app.post('/login',
         passport.authenticate('local', 
             {failureRedirect: '/login',
             failureFlash: true}),
         function(req, res) {
-            console.log("login checked")
+            console.log("response ==========", res.json)
+            
         });
 
     // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
     app.get("/shelf", function(req, res) {
        // DEVELOPMENT CONNECTION
        // =============================================================|
-       let key = keys.grkey
-       let secret = keys.grsecret
+       let key = keys.grkey || process.env.h_grkey
+       let secret = keys.grsecret || process.env.h_grsecret
 
        // PRODUCTION CONNECTION
        // =============================================================|

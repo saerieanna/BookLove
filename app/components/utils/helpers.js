@@ -15,11 +15,12 @@ var helper = {
   },
 
   redirect: function(event,email,history) {
-      event.preventDefault();
       console.log("email: "+ email);
+      console.log("EVENT: ", event);
       axios.get("/api/members/"+email).then(function(res){
         if(res){
-          history.push("vote")
+          history.push("vote");
+          console.log("RES: ", res);
         }else{
           history.push("discuss")
         }

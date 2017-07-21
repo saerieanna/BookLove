@@ -1,6 +1,8 @@
 
 var React = require("react");
 
+var axios = require("axios");
+
 var Link = require("react-router").Link;
 
 var helpers = require("../utils/helpers");
@@ -13,9 +15,31 @@ var profile = React.createClass({
   // Set initial variables for the component
   getInitialState: function() {
   	return {
-  		first_name: "",
+  		photo_path: "",
+      email: "",
+      favorite_book: "",
+      goodreads_url: ""
   	};
   },
+
+  componentWillMount() {
+    return axios.get("/profile").then(function(results) {
+        console.log("axios results", results);
+        alert("HEHEHEHEHE!!!");
+        return results;
+      });
+  },
+
+
+  // state state to response object
+  // ADD: component will mount function
+  // call the helper function to get data and set state
+  // componentWillMount() {
+  // },
+
+  // ADD: input field for viewing another profile
+
+  // Handle change when user inputs name, call another function to set state
 
   render: function() {
   	return(
@@ -29,46 +53,6 @@ var profile = React.createClass({
     			<List.Item icon='heart' content='My favorite book: [favorite_book]' />
     			<List.Item icon='linkify' content={<a href='https://www.goodreads.com/user/show/69348922-rebecca'>goodreads</a>} />
   			</List>
-  			<Card centered>
-    			<Card.Content>
-      				<Card.Header>
-        				Recent Activity
-      				</Card.Header>
-    			</Card.Content>
-    			<Card.Content>
-      				<Feed>
-        				<Feed.Event>
-          					<Feed.Label image='/assets/images/avatar/small/jenny.jpg' />
-          						<Feed.Content>
-            						<Feed.Date content='1 day ago' />
-            						<Feed.Summary>
-              							You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-            						</Feed.Summary>
-          						</Feed.Content>
-        				</Feed.Event>
-
-        				<Feed.Event>
-          					<Feed.Label image='/assets/images/avatar/small/molly.png' />
-          						<Feed.Content>
-            						<Feed.Date content='3 days ago' />
-            						<Feed.Summary>
-              							You added <a>Molly Malone</a> as a friend.
-            						</Feed.Summary>
-          						</Feed.Content>
-        				</Feed.Event>
-
-        				<Feed.Event>
-          					<Feed.Label image='/assets/images/avatar/small/elliot.jpg' />
-          						<Feed.Content>
-            						<Feed.Date content='4 days ago' />
-            						<Feed.Summary>
-              							You added <a>Elliot Baker</a> to your <a>musicians</a> group.
-            						</Feed.Summary>
-          						</Feed.Content>
-        				</Feed.Event>
-      				</Feed>
-    			</Card.Content>
-  			</Card>
 		</div>
 		)
 	}
