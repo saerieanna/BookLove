@@ -14,6 +14,7 @@ if (!process.env.PORT) {
 var keys = require("../app/config/keys.js");
 } else {
   console.log("Heroku connection");
+  var keys = process.env
 }
  
 module.exports = function(app) {
@@ -30,8 +31,10 @@ module.exports = function(app) {
       console.log("PROCESS ENV", process.env.PORT);
        // DEVELOPMENT CONNECTION
        // =============================================================|
-       let key = keys.grkey || process.env.h_grkey
-       let secret = keys.grsecret || process.env.h_grsecret
+       let key = keys.grkey,
+       let secret = keys.grsecret
+       // let key = keys.grkey || process.env.h_grkey
+       // let secret = keys.grsecret || process.env.h_grsecret
 
        // PRODUCTION CONNECTION
        // =============================================================|
