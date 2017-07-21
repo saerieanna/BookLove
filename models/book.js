@@ -5,23 +5,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true
     }
-  },
-    {
-    classMethods: {
-      // Associating Book with Discussion
-      // When a Book is deleted, also delete any associated Discussions, Chapters
-      associate: function(models) {
-        Book.hasMany(models.Discussion, {
-          onDelete: "cascade"
-        },
-        models.Chapter, {
-          onDelete: "cascade"
-        },
-        // If a book is deleted, the Member should NOT be deleted
-        models.Member
-        );
-      }
-    }
   });
+  
   return Book;
 };

@@ -58,10 +58,20 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Member.hasMany(models.Disussion, {
+          foreignKey: "email",
+          sourceKey: "email",
           onDelete: "cascade"
-        },
-        models.Book, models.chapter
-        );
+        });
+        Member.hasMany(models.Book, {
+          foreignKey:"id",
+          sourceKey:"current_book",
+          onDelete:"cascade"
+        });
+        Member.hasMany(models.chapter,{
+          foreignKey:"chapter",
+          sourceKey:"chapter",
+          onDelete:"cascade"
+        });
       }
     }
    });

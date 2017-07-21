@@ -34,6 +34,7 @@ module.exports = (
 		<Route path="/login" component={login} />
 		<Route path="/vote" component={vote} />
 		<Route path="/profile" component={profile} />
+		<Route path="/discuss" component={discuss} />
 		<IndexRoute component={background} />
    </Route>
   </Router>
