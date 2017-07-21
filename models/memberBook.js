@@ -29,7 +29,8 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: "member_id",
             targetKey: "id",
             onDelete:"cascade"
-          })
+          });
+        }
       }
   });
   return MemberBook;

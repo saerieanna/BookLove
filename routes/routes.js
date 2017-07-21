@@ -11,7 +11,7 @@ module.exports = function(app) {
       first_name: user.first_name,
       last_name: user.last_name,
       email: user.email,
-      current_book: user.current_book
+      current_book: user.current_book,
       chapter: user.chapter,
       photo_path:user.photo_path
     };
