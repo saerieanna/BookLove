@@ -38,8 +38,8 @@ module.exports = function(app) {
 
        // PRODUCTION CONNECTION
        // =============================================================|
-       let key = process.env.h_grkey
-       let secret = process.env.h_grsecret
+       var key = process.env.h_grkey
+       var secret = process.env.h_grsecret
 
        // Need to add in array of users?
        let sample_user = 4085451;
