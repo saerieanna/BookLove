@@ -27,7 +27,8 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 if (PORT === 8080) {
 var keys = require("./app/config/keys.js");
 } else {
-	console.log("Heroku");
+	console.log("Heroku connection");
+	var keys = null;
 }
 
 const Nexmo = require('nexmo');
