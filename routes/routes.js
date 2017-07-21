@@ -6,6 +6,18 @@ var db = require("../models");
 
 module.exports = function(app) {
 
+  app.get("/", function(req,res){
+    var info={
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+      current_book: user.current_book
+      chapter: user.chapter,
+      photo_path:user.photo_path
+    };
+    res.json(info)
+  });
+
   app.get("/api/members", function(req, res) {
     db.Member.findAll({}).then(function(dbMember) {
       res.json(dbMember);

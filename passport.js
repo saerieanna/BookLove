@@ -57,7 +57,7 @@ module.exports = function(app) {
       where: {
         id: id
       }
-    // },{include:[{model:db.Member}]
+    },{include:[{model:db.Book}]
     }).then(function (user) {
       console.log("PASSPORT USER NAME: ", user.first_name);
       if (user == null) {
