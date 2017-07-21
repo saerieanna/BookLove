@@ -24,6 +24,7 @@ var register=require("../components/children/register");
 var vote = require("../components/children/vote");
 var background=require("../components/children/background");
 var profile=require("../components/children/profile");
+var discuss=require("../components/children/discuss");
 
 // Export the Routes
 module.exports = (
