@@ -25,18 +25,16 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // DETERMINE CONNECTION
 if (PORT === 8080) {
-var keys = require("./app/config/keys.js");
+	var keys = require("./app/config/keys.js");
 } else {
 	console.log("Heroku connection");
 	var keys = process.env
-}
+};
 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
 	  apiKey: keys.apiKey,
   	  apiSecret: keys.apiSecret
-  // apiKey: keys.apiKey || process.env.h_apiKey,
-  // apiSecret: keys.apiSecret || process.env.h_apiSecret
 });
 
 // TESTING NEXMO

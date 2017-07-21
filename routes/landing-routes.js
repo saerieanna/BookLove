@@ -10,12 +10,12 @@ var randomstring = require("randomstring");
 
 // DETERMINE CONNECTION
 // =============================================================|
-// if (!process.env.PORT) {
-// var keys = require("../app/config/keys.js");
-// } else {
-//   console.log("Heroku connection");
-//   var keys = process.env
-// }
+if (!process.env.PORT) {
+var keys = require("../app/config/keys.js");
+} else {
+  console.log("Heroku connection");
+  var keys = process.env
+}
  
 module.exports = function(app) {
 
@@ -29,17 +29,8 @@ module.exports = function(app) {
     // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
     app.get("/shelf", function(req, res) {
       console.log("PROCESS ENV", process.env.PORT);
-       // DEVELOPMENT CONNECTION
-       // =============================================================|
-       // let key = keys.grkey,
-       // let secret = keys.grsecret
-       // let key = keys.grkey || process.env.h_grkey
-       // let secret = keys.grsecret || process.env.h_grsecret
-
-       // PRODUCTION CONNECTION
-       // =============================================================|
-       var key = process.env.h_grkey
-       var secret = process.env.h_grsecret
+       key = keys.grkey;
+       secret = keys.grsecret;
 
        // Need to add in array of users?
        let sample_user = 4085451;
