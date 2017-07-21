@@ -25,6 +25,7 @@ var profile = React.createClass({
   componentWillMount() {
     return axios.get("/profile").then(function(results) {
         console.log("axios results", results);
+        console.log("RESULTS: ", results)
         alert("HEHEHEHEHE!!!");
         return results;
       });

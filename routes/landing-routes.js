@@ -7,9 +7,14 @@ var nodemailer = require("nodemailer");
 var bcrypt = require('bcryptjs');
 const goodreads = require('goodreads');
 var randomstring = require("randomstring");
-// DEVELOPMENT CONNECTION
+
+// DETERMINE CONNECTION
 // =============================================================|
+if (!process.env.PORT) {
 var keys = require("../app/config/keys.js");
+} else {
+  console.log("Heroku connection");
+}
  
 module.exports = function(app) {
 
@@ -17,13 +22,12 @@ module.exports = function(app) {
         passport.authenticate('local', 
             {failureRedirect: '/login',
             failureFlash: true}),
-        function(req, res) {
-            console.log("response ==========", res.json)
-            
+        function(req, res) {            
         });
 
     // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
     app.get("/shelf", function(req, res) {
+      console.log("PROCESS ENV", process.env.PORT);
        // DEVELOPMENT CONNECTION
        // =============================================================|
        let key = keys.grkey || process.env.h_grkey

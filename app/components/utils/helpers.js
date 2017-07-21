@@ -15,8 +15,6 @@ var helper = {
   },
 
   redirect: function(event,email,history) {
-      console.log("email: "+ email);
-      console.log("EVENT: ", event);
       axios.get("/api/members/"+email).then(function(res){
         if(res){
           history.push("vote");

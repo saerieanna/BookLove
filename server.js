@@ -23,9 +23,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// DEVELOPMENT CONNECTION: NEXMO
-// Use an if statement here to check whether "env variables" are defined
+// DETERMINE CONNECTION
+if (PORT === 8080) {
 var keys = require("./app/config/keys.js");
+} else {
+	console.log("Heroku");
+}
 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
