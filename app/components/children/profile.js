@@ -15,6 +15,8 @@ var profile = React.createClass({
   // Set initial variables for the component
   getInitialState: function() {
   	return {
+      first_name: "",
+      last_name: "",
   		photo_path: "",
       email: "",
       favorite_book: "",
@@ -23,20 +25,19 @@ var profile = React.createClass({
   },
 
   componentWillMount() {
-    return axios.get("/profile").then(function(results) {
-        console.log("axios results", results);
-        console.log("RESULTS: ", results)
-        alert("HEHEHEHEHE!!!");
-        return results;
+    axios.get("/profile/3").then(function(response) {
+    console.log("axios results", response);
+    var data = response.data;
+    this.setState({ 
+      photo_path: data.photo_path,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      email: data.email,
+      favorite_book: data.favorite_book,
+      goodreads_url: data.goodreads_url
       });
+    }.bind(this));
   },
-
-
-  // state state to response object
-  // ADD: component will mount function
-  // call the helper function to get data and set state
-  // componentWillMount() {
-  // },
 
   // ADD: input field for viewing another profile
 
@@ -48,10 +49,11 @@ var profile = React.createClass({
   			<Image src={this.state.photo_path} size='small' shape='circular' centered />
           	<Progress value='3' total='5' progress='ratio' indicating />
   			<List animated>
+          <List.Item icon='marker' content={this.state.first_name + " " + this.state.last_name} />
   				<List.Item icon='book' content='I am reading [book_title]' />
     			<List.Item icon='marker' content='Chicago, IL' />
     			<List.Item icon='mail' content={this.state.email}/>
-    			<List.Item icon='heart' content={this.state.favorite_book} />
+    			<List.Item icon='heart' content={'My favorite book: ' +this.state.favorite_book} />
     			<List.Item icon='linkify' content={this.state.goodreads_url} />
   			</List>
 		</div>
