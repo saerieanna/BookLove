@@ -45,7 +45,7 @@ var login = React.createClass({
 					</div>
 					<br />
 					<center>
-						<button className="btn red lighten-2" type="submit" name="action" onClick={this.redirectRoute}>Connect</button>
+						<button className="btn red lighten-2" type="submit" name="action" >Connect</button>
 						<br />
 						<br />
 						<a href="">Forgot password?</a>

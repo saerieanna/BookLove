@@ -15,7 +15,7 @@ var discuss = React.createClass({
 	},
 
 	componentWillMount(){
-		axios.get("/").then(function(res){
+		axios.get("/request").then(function(res){
 	    	this.setState(res);
       });
 	},
