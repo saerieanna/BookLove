@@ -25,7 +25,7 @@ var profile = React.createClass({
   },
 
   componentWillMount() {
-    axios.get("/request".then(function(response) {
+    axios.get("/request").then(function(response) {
     console.log("axios results", response);
     var data = response.data;
     this.setState({ 
