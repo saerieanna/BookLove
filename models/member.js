@@ -81,4 +81,5 @@ module.exports = function(sequelize, DataTypes) {
   return Member;
 };
 
+// this file is good to go
 
