@@ -17,10 +17,10 @@ var helper = {
   redirect: function(event,email,history) {
       axios.get("/api/members/"+email).then(function(res){
         if(res){
-          history.push("vote");
+          history.push("profile");
           console.log("RES: ", res);
         }else{
-          history.push("discuss")
+          history.push("vote")
         }
       });
   },
