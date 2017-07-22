@@ -67,10 +67,13 @@ module.exports = function(sequelize, DataTypes) {
           sourceKey:"current_book",
           onDelete:"cascade"
         });
-        Member.hasMany(models.chapter,{
+        Member.hasMany(models.Chapter,{
           foreignKey:"chapter",
           sourceKey:"chapter",
           onDelete:"cascade"
+        });
+        Member.hasOne(models.MemberBook, {
+          foreignKey: "member_id"
         });
       }
     }

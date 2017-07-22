@@ -1,3 +1,14 @@
+// const Model = sequelize.define('Model', {
+//     ...
+// }, {
+//     classMethods: {
+//         associate: function (model) {...}
+//     },
+//     instanceMethods: {
+//         someMethod: function () { ...}
+//     }
+// });
+
 module.exports = function(sequelize, DataTypes) {
   var MemberBook = sequelize.define("MemberBook", {
     member_id: {
@@ -16,22 +27,21 @@ module.exports = function(sequelize, DataTypes) {
       //   key: "id"
       // }
      }
-    },
-    {
-      classMethods: {
-        associate:function(models){
-          MemberBook.belongsTo(models.Book, {
-            foreignKey: "book_id",
-            targetKey: "id",
-            onDelete: "cascade"
-          });
-          MemberBook.belongsTo(models.Member,{
-            foreignKey: "member_id",
-            targetKey: "id",
-            onDelete:"cascade"
-          });
-        }
-      }
-  });
+    });
+
+    MemberBook.associate = function (models) {
+      MemberBook.belongsTo(models.Book, {
+        foreignKey: "book_id",
+        targetKey: "id",
+        onDelete: "cascade"
+      });
+      MemberBook.belongsTo(models.Member, {
+        foreignKey: "member_id",
+        targetKey: "id",
+        onDelete:"cascade"
+      });
+    };
+
   return MemberBook;
-};
+}
+

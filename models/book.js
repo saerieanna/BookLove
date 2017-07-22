@@ -5,7 +5,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true
     }
-  });
+   },
+    {
+    	classMethods: {
+    		associate: function(models) {
+    			Book.hasMany(models.Member)
+    		}
+        // hasMany chapter
+    	}
+    });
   
   return Book;
 };

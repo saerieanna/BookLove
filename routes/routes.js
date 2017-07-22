@@ -1,21 +1,31 @@
 // TEST FILE TO START QUERYING DATA
-
+var express = require("express");
+var passport = require('passport');
 console.log("Routes loaded!");
 
 var db = require("../models");
 
 module.exports = function(app) {
 
-  app.get("/", function(req,res){
-    var info={
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email: user.email,
-      current_book: user.current_book,
-      chapter: user.chapter,
-      photo_path:user.photo_path
-    };
-    res.json(info)
+  app.post('/login',
+    passport.authenticate('local', 
+        {failureRedirect: '/',
+        failureFlash: true}),
+    function(req, res) {
+        res.redirect("/profile")
+    });
+
+  app.get("/request",require('connect-ensure-login').ensureLoggedIn('/login'),function(req,res){
+    console.log("print out this infor" + req.user.first_name);
+    // var info={
+    //   first_name: req.user.first_name,
+    //   last_name: req.user.last_name,
+    //   email: req.user.email,
+    //   current_book: req.user.current_book,
+    //   chapter: req.user.chapter,
+    //   photo_path:req.user.photo_path
+    // };
+    res.json(req.user)
   });
 
   app.get("/api/members", function(req, res) {
@@ -31,6 +41,7 @@ module.exports = function(app) {
         },
     }).then(function(result) {
         var book_associate=JSON.parse(JSON.stringify(result)).current_book
+        console.log("book id" + book_associate);
         if (book_associate===0){
           res.json(false)
         }else{

@@ -49,17 +49,17 @@ module.exports = function(app) {
 
             res.json(JSON.stringify(books));
            
-            console.log(books.map(book => {
-                console.log('==================================');
-                console.log("book title", book.title);
-                console.log("book author", book.authors[0].author.name);
-                console.log("book imageUrl", book.image_url);
-                console.log("book description", book.description);
-                console.log("book rating", book.average_rating);
-                console.log('==================================');
+            // console.log(books.map(book => {
+            //     console.log('==================================');
+            //     console.log("book title", book.title);
+            //     console.log("book author", book.authors[0].author.name);
+            //     console.log("book imageUrl", book.image_url);
+            //     console.log("book description", book.description);
+            //     console.log("book rating", book.average_rating);
+            //     console.log('==================================');
 
 
-            }))
+            // }))
         };
 
 
