@@ -44,3 +44,6 @@ h5
 	width:80%;
 	margin-left:10%;
 }
+.display-linebreak {
+	white-space: 'pre-wrap';
+}

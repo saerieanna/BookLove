@@ -28,28 +28,49 @@ module.exports = function(app) {
 
     // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
     app.get("/shelf", function(req, res) {
-      console.log("PROCESS ENV", process.env.PORT);
-       key = keys.grkey;
-       secret = keys.grsecret;
+        // DEVELOPMENT CONNECTION
+        // =============================================================|
+        let key = keys.grkey
+        let secret = keys.grsecret
 
-       // Need to add in array of users?
-       let sample_user = 4085451;
-       console.log("this is the selected user's shelf!");
-       let dump = json => {
-           res.json(json);
-           // const title = json.GoodreadsResponse.books[0].book[0].title;
-           // // const imageUrl = json.GoodreadsResponse.books[0].book[0].image_url;
-           // // const bookImage = $("<img>");
-           // // console.log('im in the dump -----', json.GoodreadsResponse.books[0].book[0]);
-           // res.end()
-       }
+        // PRODUCTION CONNECTION
+        // =============================================================|
+        // let key = process.env.h_grkey
+        // let secret = process.env.h_grsecret
 
-       gr = goodreads.client({ 'key': key, 'secret': secret });
-       let shelfOptions = { 'userID': sample_user, 'shelf': 'web', 'page': 1, 'per_page': 10 }
+        let sample_user = 4085451;
+        console.log("this is the selected user's shelf!");
+        let dump = json => {
+            // res.json(json);
 
-       let getShelf = gr.getSingleShelf(shelfOptions, dump);
-       return getShelf
-   })
+            //looping through the books with .map in child vote//
+            const books = json.GoodreadsResponse.books[0].book;
+          
+
+            res.json(JSON.stringify(books));
+           
+            console.log(books.map(book => {
+                console.log('==================================');
+                console.log("book title", book.title);
+                console.log("book author", book.authors[0].author.name);
+                console.log("book imageUrl", book.image_url);
+                console.log("book description", book.description);
+                console.log("book rating", book.average_rating);
+                console.log('==================================');
+
+
+            }))
+        };
+
+
+        gr = goodreads.client({ 'key': key, 'secret': secret });
+        let shelfOptions = { 'userID': sample_user, 'shelf': 'to-read' }
+
+        let getShelf = gr.getSingleShelf(shelfOptions, dump);
+        return getShelf;
+
+    })
+
 
 
     // UPDATE THE MEMBER DATABASE AT REGISTRATION
