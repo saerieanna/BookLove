@@ -5,6 +5,8 @@ var React = require("react");
 // https://github.com/ReactTraining/react-router/blob/master/docs/API.md#link
 var Link = require("react-router").Link;
 
+
+
 // Create the Main component
 var Main = React.createClass({
 
@@ -16,16 +18,13 @@ var Main = React.createClass({
         <nav>
             <div className="nav-wrapper">
               <a href="#" data-activates="slide-out" className="button-collapse show-on-large left"><i className="material-icons">menu</i></a>
+              <a href="/" className="brand-logo center hoverable white-text">Book Love</a>
               <ul id="nav-mobile" className="right">
                 <li className="tab col s4 hoverable white-text"><Link to="/register">register</Link></li>
                 <li className="tab col s4 hoverable white-text"><Link to="/login">login</Link></li>
               </ul>
             </div>
         </nav>
-
-        <div className="col s4">
-          <h2 className="text-center red-text text-light-4">Book Love</h2>
-        </div>
 
         {this.props.children}
 

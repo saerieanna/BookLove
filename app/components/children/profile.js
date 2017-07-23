@@ -7,7 +7,7 @@ var Link = require("react-router").Link;
 
 var helpers = require("../utils/helpers");
 
-import { Image, List, Card, Feed, Progress, Button, Header, Icon, Modal, Dropdown, Menu } from 'semantic-ui-react';
+import { Image, List, Card, Container, Feed, Progress, Button, Header, Icon, Modal, Dropdown, Menu } from 'semantic-ui-react';
 
 const options = [
               { key: 1, text: 'Chapter 1', value: 1 },
@@ -49,11 +49,13 @@ var profile = React.createClass({
   },
 
 // We can't display current_book; it's an integer. We need book title instead.
+// <div className="container teal lighten-2">
 
   render: function() {
     return(
-      <div className="container teal lighten-2">
-        <Image src={this.state.photo_path} size='small' shape='circular' centered />
+      <div className = "teal lighten-3">
+       <Image src={this.state.photo_path} size='small' shape='circular' centered />
+        <div className="container teal lighten-2">
         <Modal trigger={<a className="btn btn-floating amber lighten-1 pulse"><i className="material-icons">bookmark_border</i></a>} closeIcon='close'>
           <Header icon='bookmark' content='What chapter did you just finish?' />
           <Modal.Content>
@@ -65,8 +67,6 @@ var profile = React.createClass({
               placeholder='Select chapter'
             />
             <a className="waves-effect waves-light btn amber lighten-1 right"><i className="material-icons left">check</i>Submit</a>
-
-            
           </Modal.Content>
         </Modal>
         <Progress value='3' total='5' progress='ratio' indicating />
@@ -78,8 +78,8 @@ var profile = React.createClass({
           <List.Item icon='heart' content={'My favorite book: ' +this.state.favorite_book} />
           <List.Item icon='linkify' content={this.state.goodreads_url}/>
         </List>
-          
-
+        </div>
+      
  </div>
     )
   }
