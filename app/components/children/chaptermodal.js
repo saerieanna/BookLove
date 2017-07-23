@@ -11,15 +11,12 @@ import { Image, List, Card, Container, Divider, Feed, Progress, Button, Header, 
 
 var ChapterModal = React.createClass({
 
-  // Set initial variables for the component
   getInitialState: function() {
     return {
       chapterUpdate: "",
-      // email: 'rkpalmore@gmail.com',
     }
   },
 
-  // Whenever we detect any change in the input, we register it
   handleChange: function(event) {
     console.log("INPUT CHANGED");
     var newState = {};
@@ -28,7 +25,6 @@ var ChapterModal = React.createClass({
     console.log("New chapter status: ", this.state.chapterUpdate);
   },
 
-  // Handle the submit button
   handleSubmit: function(event) {
     // event.preventDefault();
     console.log("CLICKED");

@@ -35,7 +35,6 @@ var helper = {
 
   postChapter: function(chapterUpdate, email) {
     var setChapter = { chapter: chapterUpdate, email: email};
-    alert("HEYEYEYEYE!");
     return axios.post("/api/chapter", setChapter)
       .then(function(response) {
         console.log("CHAPTER: ", response);
