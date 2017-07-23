@@ -67,7 +67,7 @@ require("./routes/profile-routes.js")(app);
 
 
 // Any non API GET routes will be directed to our React App and handled by React Router
-app.get("*", function(req, res) {
+app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 

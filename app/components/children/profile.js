@@ -1,3 +1,6 @@
+// TO-DO: 
+// Display book title instead of book id
+// Get Chapters synched up with modal
 
 var React = require("react");
 
@@ -9,25 +12,26 @@ var helpers = require("../utils/helpers");
 
 import { Image, List, Card, Container, Divider, Feed, Progress, Button, Header, Icon, Modal, Dropdown, Menu } from 'semantic-ui-react';
 
-const options = [
-              { key: 1, text: 'Chapter 1', value: 1 },
-              { key: 2, text: 'Chapter 2', value: 2 },
-              { key: 3, text: 'Chapter 3', value: 3 },
-            ]
+const options = 
+  [
+      { key: 1, text: 'Chapter 1', value: 1 },
+      { key: 2, text: 'Chapter 2', value: 2 },
+      { key: 3, text: 'Chapter 3', value: 3 },
+  ]
 
 console.log('OPTIONS ', options[0].key);//returns 1
 
 const divStyle = {
   padding: 20,
   backgroundColor: '#80cbc4',
-  backgroundColor: '#b2dfdb',
+  // backgroundColor: '#b2dfdb',
 };
 
 const listStyle = {
   padding: 20,
   marginTop: 20,
   backgroundColor: '#4db6ac',
-  backgroundColor: '#80cbc4',
+  // backgroundColor: '#80cbc4',
 }
 
 var profile = React.createClass({
