@@ -15,17 +15,11 @@ module.exports = function(app) {
         res.redirect("/profile")
     });
 
-  app.get("/request",require('connect-ensure-login').ensureLoggedIn('/login'),function(req,res){
-    console.log("print out this infor " + req.user.first_name);
-    // var info={
-    //   first_name: req.user.first_name,
-    //   last_name: req.user.last_name,
-    //   email: req.user.email,
-    //   current_book: req.user.current_book,
-    //   chapter: req.user.chapter,
-    //   photo_path:req.user.photo_path
-    // };
-    res.json(req.user)
+  app.get("/request",
+    require('connect-ensure-login').ensureLoggedIn('/login'),
+    function(req,res){
+      console.log("print out this infor " + req.user.first_name);
+      res.json(req.user)
   });
 
   app.get("/api/members", function(req, res) {
@@ -50,7 +44,37 @@ module.exports = function(app) {
     });
   });
 
-  // BUT /api/members/book is returning "null" -- not sure why
+  app.post("/api/chapter", function(req, res) {
+        db.Member.findOne({
+            where:{
+                email: req.body.email
+            }
+        }).then(function(data){
+            console.log(data);
+            if(data){
+                var member_id = data.dataValues.id;
+                db.Member.findOne({
+                    where:{
+                        id: member_id
+                    }
+                }).then(function(data){
+                    console.log("CHAPTER: ", req.body.chapter);
+                    console.log(data);
+                        db.Member.update({
+                            chapter: req.body.chapter
+                        }, {
+                            where: {
+                                id: member_id
+                            }
+                        }).then(function() {
+                            res.send(true);
+
+                    });
+                });
+            };
+        });
+    });
+
   app.get("/api/book", function(req, res) {
     db.Book.findAll({
       attributes: ['title']

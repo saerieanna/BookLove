@@ -33,6 +33,15 @@ var helper = {
       });
   },
 
+  postChapter: function(email, chapter) {
+    var chapter = { email: email, chapterUpdate: chapterUpdate};
+    alert("HEYEYEYEYE!");
+    return axios.post("/api/chapter", chapter)
+      .then(function(response) {
+        console.log("CHAPTER: ", response);
+      });
+  },
+
 };
 
 module.exports = helper;

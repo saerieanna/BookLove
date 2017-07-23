@@ -55,7 +55,8 @@ app.use(cookieParser())
 app.use(session({ secret: 'friedbanana', resave: false, saveUninitialized: false }))
 app.use(flash());
 
-app.use(express.static(process.cwd() + "/public"));
+// app.use(express.static(process.cwd() + "/public"));
+app.use(express.static(__dirname + '/public'));
 
 setupPassport(app);
 

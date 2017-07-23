@@ -46,6 +46,7 @@ var profile = React.createClass({
       favorite_book: "",
       goodreads_url: "",
       current_book: "",
+      chapter: "",
     };
   },
 
@@ -61,8 +62,26 @@ var profile = React.createClass({
       favorite_book: data.favorite_book,
       goodreads_url: data.goodreads_url,
       current_book: data.current_book,
+      id: data.id,
+      chapter: data.chapter,
       });
     }.bind(this));
+  },
+
+  // Whenever we detect any change in the input, we register it
+  handleChange: function(event) {
+    console.log("INPUT CHANGED");
+    // Capture any change in the input fields
+    var newState = {};
+    newState[event.target.id] = event.target.value;
+    this.setState(newState);
+  },
+
+  // Handle the submit button
+  handleClick: function(event) {
+    // event.preventDefault();
+    console.log("CLICKED");
+    helpers.postChapter(this.state.email, this.state.chapterUpdate)
   },
 
   render: function() {
@@ -79,15 +98,18 @@ var profile = React.createClass({
                   selection
                   options={options}
                   placeholder='Select chapter'
+                  id='chapterUpdate'
+                  value={this.state.chapterUpdate}
+                  onChange={this.handleChange}
                 />
-                <a className="waves-effect waves-light btn amber lighten-1 right"><i className="material-icons left">check</i>Submit</a>
+                <button className="waves-effect waves-light btn amber lighten-1 right" onClick={this.handleClick}><i className="material-icons left">check</i>Submit</button>
               </Modal.Content>
           </Modal>
           <Progress value='3' total='5' progress='ratio' indicating />
           <List animated>
             <List.Item icon='user' content={this.state.first_name + " " + this.state.last_name} />
             <List.Item icon='book' content={'I am reading ' +this.state.current_book}/>
-            <List.Item icon='dashboard' content="I've read up to chapter 3!" />
+            <List.Item icon='bookmark' content={'I just finished chapter ' + " " + this.state.chapter} />
             <List.Item icon='mail' content={this.state.email}/>
             <List.Item icon='heart' content={'My favorite book: ' +this.state.favorite_book} />
             <List.Item icon='linkify' content={this.state.goodreads_url}/>
