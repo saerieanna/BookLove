@@ -16,7 +16,7 @@ module.exports = function(app) {
     });
 
   app.get("/request",require('connect-ensure-login').ensureLoggedIn('/login'),function(req,res){
-    console.log("print out this infor" + req.user.first_name);
+    console.log("print out this infor " + req.user.first_name);
     // var info={
     //   first_name: req.user.first_name,
     //   last_name: req.user.last_name,
