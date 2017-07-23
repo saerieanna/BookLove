@@ -67,9 +67,9 @@ require("./routes/profile-routes.js")(app);
 
 
 // Any non API GET routes will be directed to our React App and handled by React Router
-// app.get("*", function(req, res) {
-//   res.sendFile(__dirname + "/public/index.html");
-// });
+app.get("*", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 
 // Syncing our sequelize models and then starting our express app
