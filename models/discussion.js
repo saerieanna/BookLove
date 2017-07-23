@@ -15,11 +15,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Discussion.associate = function (models) {
-    Discussion.hasMany(models.Member, {
-      foreignKey: "email",
-      sourceKey: "email",
-      onDelete: "cascade"
-    });
+    Discussion.hasMany(models.Member);
   }
   return Discussion;
 };
