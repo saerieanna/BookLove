@@ -11,15 +11,16 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      // references: {
-      //   model: "members",
-      //   key: "name"
-      // }
-      // This means I can insert a comment from a user who is not named in MEMBER TABLE
-      // Returns error that foreign key cannot be added
     }
   });
+
+  Discussion.associate = function (models) {
+    Discussion.hasMany(models.Member, {
+      foreignKey: "email",
+      sourceKey: "email",
+      onDelete: "cascade"
+    });
+  }
   return Discussion;
 };
 
-// add many Member

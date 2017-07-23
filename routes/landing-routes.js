@@ -19,12 +19,12 @@ var keys = require("../app/config/keys.js");
  
 module.exports = function(app) {
 
-    app.post('/login',
-        passport.authenticate('local', 
-            {failureRedirect: '/login',
-            failureFlash: true}),
-        function(req, res) {            
-        });
+    // app.post('/login',
+    //     passport.authenticate('local', 
+    //         {failureRedirect: '/login',
+    //         failureFlash: true}),
+    //     function(req, res) {            
+    //     });
 
     // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
     app.get("/shelf", function(req, res) {
@@ -57,7 +57,6 @@ module.exports = function(app) {
             //     console.log("book description", book.description);
             //     console.log("book rating", book.average_rating);
             //     console.log('==================================');
-
 
             // }))
         };
