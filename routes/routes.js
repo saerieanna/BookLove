@@ -18,7 +18,7 @@ module.exports = function(app) {
   app.get("/request",
     require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req,res){
-      console.log("print out this infor " + req.user.first_name);
+      console.log("Print user name: " + req.user.first_name);
       res.json(req.user)
   });
 
@@ -45,9 +45,14 @@ module.exports = function(app) {
   });
 
   app.post("/api/chapter", function(req, res) {
+      require('connect-ensure-login').ensureLoggedIn('/login'),
+        function(req,res) {
+          console.log(req.user.email);
+          res.json(req.user)
+        }
         db.Member.findOne({
             where:{
-                email: req.body.email
+                email: req.user.email
             }
         }).then(function(data){
             console.log(data);
@@ -58,7 +63,7 @@ module.exports = function(app) {
                         id: member_id
                     }
                 }).then(function(data){
-                    console.log("CHAPTER: ", req.body.chapter);
+                    console.log("CHAPTER going to db: ", req.body.chapter);
                     console.log(data);
                         db.Member.update({
                             chapter: req.body.chapter

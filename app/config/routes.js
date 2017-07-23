@@ -25,7 +25,7 @@ var vote = require("../components/children/vote");
 var background=require("../components/children/background");
 var profile=require("../components/children/profile");
 var discuss=require("../components/children/discuss");
-var modal=require("../components/children/modal")
+var chaptermodal=require("../components/children/chaptermodal")
 	
 
 // Export the Routes
@@ -38,6 +38,7 @@ module.exports = (
 		<Route path="/vote" component={vote} />
 		<Route path="/profile" component={profile} />
 		<Route path="/discuss" component={discuss} />
+		<Route path="/chaptermodal" component={chaptermodal} />
 		<IndexRoute component={background} />
    </Route>
   </Router>
