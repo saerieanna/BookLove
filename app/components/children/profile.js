@@ -41,14 +41,14 @@ var profile = React.createClass({
       last_name: data.last_name,
       email: data.email,
       favorite_book: data.favorite_book,
-      goodreads_url: data.goodreads_url
+      goodreads_url: data.goodreads_url,
+      current_book: data.current_book,
+      book_title: data.book_title
       });
     }.bind(this));
   },
 
-  // ADD: input field for viewing another profile
-
-  // Handle change when user inputs name, call another function to set state
+// We can't display current_book; it's an integer. We need book title instead.
 
   render: function() {
     return(
@@ -72,7 +72,7 @@ var profile = React.createClass({
         <Progress value='3' total='5' progress='ratio' indicating />
         <List animated>
         <List.Item icon='user' content={this.state.first_name + " " + this.state.last_name} />
-          <List.Item icon='book' content='I am reading [book_title]' />
+          <List.Item icon='book' content={'I am reading ' +this.state.book_title}/>
           <List.Item icon='dashboard' content="I've read up to chapter 3!" />
           <List.Item icon='mail' content={this.state.email}/>
           <List.Item icon='heart' content={'My favorite book: ' +this.state.favorite_book} />

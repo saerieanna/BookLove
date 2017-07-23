@@ -5,15 +5,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true
     }
-   },
-    {
-    	classMethods: {
-    		associate: function(models) {
-    			Book.hasMany(models.Member)
-    		}
-        // hasMany chapter
-    	}
-    });
+  });
+
+  Book.associate = function (models)
+  {
+    Book.hasMany(models.Chapter);
+
+    Book.hasMany(models.Member);
+  }
   
   return Book;
 };
