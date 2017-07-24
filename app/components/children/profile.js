@@ -42,8 +42,6 @@ var profile = React.createClass({
       goodreads_url: "",
       current_book: "",
       chapter: "",
-      chapters: "",
-      book_title: "",
     };
   },
 
@@ -61,7 +59,6 @@ var profile = React.createClass({
       current_book: data.current_book,
       id: data.id,
       chapter: data.chapter,
-      book_title: data.book_title,
       });
     }.bind(this));
   },

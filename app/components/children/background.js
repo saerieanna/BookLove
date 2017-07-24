@@ -13,4 +13,4 @@ var background = React.createClass({
 	}
 });
 
-module.exports=background;
+module.exports=background;	
