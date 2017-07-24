@@ -41,6 +41,22 @@ var helper = {
       });
   },
 
+  postSendEmail: function(email) {
+    var email = { email: email};
+    return axios.post("/api/send_email", email)
+      .then(function(response) {
+        console.log("EMAIL: ", response);
+      });
+  },
+
+  putUpdatePassword: function(email, password) {
+    var passwordObject = { email: email, password: password};
+    return axios.put("/api/update_password", password)
+      .then(function(response) {
+        console.log("PW: ", response);
+      });
+  },
+
 };
 
 module.exports = helper;

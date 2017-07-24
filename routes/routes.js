@@ -7,7 +7,6 @@ var nodemailer = require("nodemailer");
 var bcrypt = require('bcryptjs');
 const goodreads = require('goodreads');
 var randomstring = require("randomstring");
-
 var db = require("../models");
 
 // DETERMINE CONNECTION
@@ -18,6 +17,15 @@ var keys = require("../app/config/keys.js");
   console.log("Heroku connection");
   var keys = process.env
 }
+
+var smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+      user: keys.user,
+      pass: keys.pass
+    }
+});
  
 module.exports = function(app) {
 
@@ -149,6 +157,81 @@ module.exports = function(app) {
             };
       });
   });
+
+  // UPDATE MEMBER PASSWORD AFTER NEW HASHED PASSWORD CREATED
+  app.put('/api/update_password', function(req, res) {
+      console.log("body", req.body.password);
+      var newPassword = req.body.password; 
+      var email = req.body.email;
+      console.log(newPassword, email);
+      var hashedPassword;
+      var salt = bcrypt.genSaltSync(10);
+      hashedPassword = bcrypt.hashSync(req.user.password, salt);
+        db.Member.findOne({
+            where:{
+                email: email
+            }
+        }).then(function(data){
+            if(data){
+                var member_id = data.dataValues.id;
+                db.Member.update({
+                    password: hashedPassword,
+                },{
+                    where: {
+                        id: member_id
+                    }
+                }).then(function() {
+                    res.send(true);
+                });
+            }else{
+                res.send("invalid email");
+            }
+        })
+    });
+
+  // SEND MEMBER A NEW HASHED PASSWORD
+  app.post('/api/send_email', function(req, res) {       
+    var newPassword = randomstring.generate(8);
+    var email = req.body.email;
+    db.Member.findOne({
+            where:{
+                email:req.body.email
+            }
+        }).then(function(data){
+            if(data){
+                var member_id = data.dataValues.id;
+                db.Member.findOne({
+                    where:{
+                        id : member_id
+                    }
+                }).then(function(data){
+                    if(data){
+                    var mailOptions = {
+                        to: email,
+                        subject: "Your Book Love Password Request",
+                        text: "Here is your new Book Love password: " + newPassword,
+                        html: "<body style='background-color: #e57373; text-align: center; padding-bottom: 15px; padding-top: 15px; font-family: Georgia; font-style: normal; font-size: 1.6rem;'><p style='color: #fffbe4; font-style: italic; font-size: 2.6rem;'>Book Love!</p><p style='color: #fffbe4;'>Here is your new Book Love password: </p><b>" + newPassword + "</b></p><p><a href='https://warm-sea-55516.herokuapp.com/' target='blank' style='color: #00CB88; font-size: 1.3rem; font-style: italic;'>Log in to Book Love</p></body>"
+                    }
+                    smtpTransport.sendMail(mailOptions, function(error, response){
+                        if (error){
+                            console.log(error);
+                            res.send("error");
+                        }else{
+                            console.log("Message sent to: " + req.body.email);
+                            var sendObject = {status: "sent", password: newPassword};
+                            res.send(sendObject);
+                            }
+                    });
+                    }else{
+                        res.send("invalid user")
+                    };
+                });
+             }else{
+                res.send("invalid email")
+            };
+        });    
+    }); 
+
 
   // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
   app.get("/shelf", function(req, res) {
