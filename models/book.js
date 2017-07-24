@@ -4,6 +4,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
+    },
+    chapters: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 

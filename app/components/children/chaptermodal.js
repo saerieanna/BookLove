@@ -6,7 +6,7 @@ var Link = require("react-router").Link;
 
 var helpers = require("../utils/helpers");
 
-import { Image, List, Card, Container, Divider, Feed, Progress, Button, Header, Icon, Modal, Dropdown, Menu } from 'semantic-ui-react';
+import { Image, List, Container, Progress, Button, Header, Icon, Modal } from 'semantic-ui-react';
 
 
 var ChapterModal = React.createClass({
@@ -40,7 +40,7 @@ var ChapterModal = React.createClass({
                 <form onSubmit={this.handleSubmit} className="col s12">
                   <div className="form-container">
                     <div className="row">
-                      <div className="input-field col s6">
+                      <div className="input-field col s12">
                         <input id="chapterUpdate" type="number" value={this.state.chapterUpdate} onChange={this.handleChange} className="validate" />
                       </div>
                     </div>

@@ -11,8 +11,8 @@ INSERT INTO `book_love`.`members` (`first_name`, `last_name`, `email`, `photo_pa
 
 // TEST DATA FOR BOOK TABLE
 
-INSERT INTO `book_love`.`books` (`title`) VALUES ('Ramona the Brave');
-INSERT INTO `book_love`.`books` (`title`) VALUES ('Silent Spring');
+INSERT INTO `book_love`.`books` (`title`, `chapters`) VALUES ('Ramona the Brave', '9');
+INSERT INTO `book_love`.`books` (`title`, `chapters`) VALUES ('Silent Spring', '12');
 
 // TEST DATA FOR MEMBERBOOK
 
