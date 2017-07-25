@@ -20,10 +20,6 @@ var ChapterModal = React.createClass({
     }
   },
 
-  handleClick: function(event) {
-    alert("HEHEHTHTHHTHTTH!");
-    helpers.postStatus(this.state.email);
-  },
 
   handleChange: function(event) {
     console.log("INPUT CHANGED");
@@ -37,6 +33,12 @@ var ChapterModal = React.createClass({
     // event.preventDefault();
     console.log("CLICKED");
     helpers.postChapter(this.state.chapterUpdate, this.state.email, this.state.history)
+  },
+
+  // NEEDS WORK
+  handleClick: function(event) {
+    alert("HEHEHTHTHHTHTTH!");
+    helpers.postStatus(this.state.email);
   },
 
   render: function() {

@@ -43,6 +43,15 @@ var helper = {
       });
   },
 
+  // NOT FUNCTIONING YET, NEEDS WORK
+  postStatus: function(email) {
+    var email = { email: email};
+    return axios.post("api/status", email)
+      .then(function(response){
+        console.log("User is finished with book: ", email)
+      });
+  },
+
   postSendEmail: function(email) {
     var email = { email: email};
     return axios.post("/api/send_email", email)
