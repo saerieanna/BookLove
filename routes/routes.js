@@ -67,7 +67,7 @@ module.exports = function(app) {
                         id: member_id
                     }
                 }).then(function(data) {
-                    res.send("this is the message");
+                    res.redirect("/login");
                     console.log("it didn't redirect");
                   });
                 // });
@@ -106,6 +106,39 @@ module.exports = function(app) {
       res.json(req.user)
   });
 
+  app.get("/comment",require('connect-ensure-login').ensureLoggedIn('/login'),
+    function(req,res){
+      db.Discussion.findAll({
+        where:{
+          chapter: {
+            $gt:req.body.chapter
+          }
+        },
+        limit:10
+      }).then(function(data){
+        var comment=[];
+        for(key in data){
+          comment.push({
+            comment:data[key].dataValues.comment,
+            book:data[Key].dataValue.title,
+            sender:data[key.dataValues.first_name]
+          })
+        }
+        res.json(comment);
+      })
+    });
+
+  app.post("/comment",require('connect-ensure-login').ensureLoggedIn('/login'),
+    function(req,res){
+      db.Discussion.insert({
+        chapter:user.chapter,
+        comment:req.body.comment,
+        email:user.email
+      }).then(function(result){
+        console.log("comment added in db")
+      })
+    });
+
 
   // app.get("/api/members/:email", function(req, res) {
   //   db.Member.findOne({
@@ -143,41 +176,41 @@ module.exports = function(app) {
 
   // UPDATE THE MEMBER DATABASE AT REGISTRATION
   // ADD: USER FEEDBACK IF BAD EMAIL, OR EMAIL ALREADY REGISTERED
-  app.post("/api/new_member", function(req, res) {
-      var hashedPassword;
-      var salt = bcrypt.genSaltSync(10);
-      hashedPassword = bcrypt.hashSync(req.body.password, salt);
-      db.Member.findOne({
-        where:{
-          email:req.body.email
-        }
-      }).then(function(data){
-        console.log(data);
-        if(data){
-          var member_id = data.dataValues.id;
-          db.Member.findOne({
-            where:{
-              id: member_id
-            }
-          }).then(function(data){
-              console.log(data);
-              db.Member.update({
-                  phone: req.body.phone,
-                  password: hashedPassword,
-                  goodreads_url: req.body.goodreads_url,
-                  favorite_genre: req.body.favorite_genre,
-                  favorite_book: req.body.favorite_book
-              }, {
-                where: {
-                  id: member_id
-                }
-              }).then(function() {
-                  res.send(true);
-              });
-            });
-          };
-      });
-  });
+  // app.post("/api/new_member", function(req, res) {
+  //     var hashedPassword;
+  //     var salt = bcrypt.genSaltSync(10);
+  //     hashedPassword = bcrypt.hashSync(req.body.password, salt);
+  //     db.Member.findOne({
+  //       where:{
+  //         email:req.body.email
+  //       }
+  //     }).then(function(data){
+  //       console.log(data);
+  //       if(data){
+  //         var member_id = data.dataValues.id;
+  //         db.Member.findOne({
+  //           where:{
+  //             id: member_id
+  //           }
+  //         }).then(function(data){
+  //             console.log(data);
+  //             db.Member.update({
+  //                 phone: req.body.phone,
+  //                 password: hashedPassword,
+  //                 goodreads_url: req.body.goodreads_url,
+  //                 favorite_genre: req.body.favorite_genre,
+  //                 favorite_book: req.body.favorite_book
+  //             }, {
+  //               where: {
+  //                 id: member_id
+  //               }
+  //             }).then(function() {
+  //                 res.send(true);
+  //             });
+  //           });
+  //         };
+  //     });
+  // });
 
   // REQUEST A PROFILE BY MEMBER ID
   app.get("/profile/:id", 
@@ -203,7 +236,8 @@ module.exports = function(app) {
   app.post("/api/chapter", function(req, res) {
       require('connect-ensure-login').ensureLoggedIn('/login'),
         function(req,res) {
-          console.log(req.user.email);
+          console.log("this is" + req.user.email);
+
           res.json(req.user)
         }
         db.Member.findOne({
@@ -228,7 +262,8 @@ module.exports = function(app) {
                                 id: member_id
                             }
                         }).then(function() {
-                            res.send(true);
+                          console.log("want to redirect")
+                            res.redirect("/discuss");
 
                     });
                 });

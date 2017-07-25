@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Discussion = sequelize.define("Discussion", {
+
     chapter: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -16,6 +17,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Discussion.associate = function (models) {
     Discussion.hasMany(models.Member);
+    Discussion.hasMany(models.Book);
   }
   return Discussion;
 };

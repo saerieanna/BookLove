@@ -34,11 +34,12 @@ var helper = {
       });
   },
 
-  postChapter: function(chapterUpdate, email) {
+  postChapter: function(chapterUpdate, email,history) {
     var setChapter = { chapter: chapterUpdate, email: email};
     return axios.post("/api/chapter", setChapter)
       .then(function(response) {
         console.log("CHAPTER: ", response);
+        history.push("discuss");
       });
   },
 
