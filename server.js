@@ -56,8 +56,8 @@ app.use(session({ secret: 'friedbanana', resave: false, saveUninitialized: false
 app.use(flash());
 
 // app.use(express.static(process.cwd() + "/public"));
-app.use(express.static(__dirname + '/public'));
-// app.use(express.static("./public"));
+// app.use(express.static(__dirname + '/public'));
+app.use(express.static("./public"));
 
 setupPassport(app);
 
@@ -69,7 +69,7 @@ require("./routes/routes.js")(app);
 // Any non API GET routes will be directed to our React App and handled by React Router
 app.get("*", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
-  console.log(__dirname);
+
   // app.use(express.static(process.cwd() + "/public"));
   
 
