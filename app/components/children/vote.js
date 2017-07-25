@@ -6,16 +6,30 @@ var Link = require("react-router").Link;
 
 var vote = React.createClass({
     getInitialState: function() {
-        return { shelf: [], counter: 0 };//;
-         this.state = { counter: 0};
-         this.increment = this.increment.bind(this);
+        return { shelf: [], count: 0 };
+        // , counter: 0 };//;
+        //  this.state = { counter: 0};
+        //  this.increment = this.increment.bind(this);
+    },
+
+    incrementCount: function(book) {
+        book.likes = book.likes + 1;
+        this.forceUpdate();
+    },
+
+    handleChange: function(book) {
+        this.setState({
+            shelf:book.target.value
+    });
     },
 
 
-    clickLike: function(e) {
-    document.getElementById('{book.title').innerHTML = 'Like';
-    e.preventDefault();
-},
+
+
+//     clickLike: function(e) {
+//     document.getElementById('{book.title').innerHTML = 'Like';
+//     e.preventDefault();
+// },
 
     
      // handleOptionChange: function (changeEvent) {
@@ -26,13 +40,7 @@ var vote = React.createClass({
             // },
     
 
-    handleFormSubmit: function (formSubmitEvent) {
-    formSubmitEvent.preventDefault();
-
-    
-  },
-
-    loadServerData: function() {
+     loadServerData: function() {
         $.get("/shelf", function(result) {
             if (this.isMounted()) {
                 var shelf = JSON.parse(result);
@@ -73,8 +81,8 @@ var vote = React.createClass({
         } else 
         
             var titles = this.state.shelf.slice(0, 5).map(book => {
-                return <div key = {book.title} className = "display-linebreak"> <h4 className="purple lighten-2">Book: </h4> <img className = "display-linebreak" src= {book.image_url} />  <h5 className=" light-blue lighten-3">Title: </h5> { book.title } <h5 className="light-blue lighten-1">Author: </h5> { book.authors[0].author[0].name} <h5 className=" light-blue darken-1">Description: </h5> { book.description } <h5 className=" light-blue darken-3">Average rating: </h5> { book.average_rating } <div> {this.state.counter}</div> <button id={book.title} value={book.title} checked={this.increment} onClick={this.increment}>Like</button>
-                       </div>
+                return <div key = {book.title} value={this.state.shelf} onChange={this.handleChange} className = "display-linebreak"> <h4 className="purple lighten-2">Book: </h4> <img className = "display-linebreak" src= {book.image_url} />  <h5 className=" light-blue lighten-3">Title: </h5> { book.title } <h5 className="light-blue lighten-1">Author: </h5> { book.authors[0].author[0].name} <h5 className=" light-blue darken-1">Description: </h5> { book.description } <h5 className=" light-blue darken-3">Average rating: </h5> { book.average_rating } <div> <p> likes {book.likes} </p> <button className= "btn btn-primary" onClick= {this.incrementCount.bind(this, book)}>like</button>
+                       </div> </div>
 
             });
 
@@ -91,14 +99,10 @@ var vote = React.createClass({
     });
 
              
-var Counter = React.createClass({
-  render: function() {
-    return <div>{this.props.counter}</div>;
-  }
-});
-
 module.exports = vote;
 
+
+ 
 
 //for radio buttons//
 // <div className="poll"><form action="#"> <p> <input className="validate" className="with-gap" name="voting-mech" type="radio" id="test3" value={book.title} checked={this.state.selectedOption === {book.title}} onChange={this.handleOptionChange> <label htmlFor="test3">Vote</label> </p></form> </div>
