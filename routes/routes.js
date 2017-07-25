@@ -77,7 +77,6 @@ module.exports = function(app) {
 
 
   // INITIALIZE PASSPORT STRATEGY
-
   app.post('/login',
     passport.authenticate('local', 
         {failureRedirect: '/',
@@ -139,7 +138,6 @@ module.exports = function(app) {
       })
     });
 
-
   // app.get("/api/members/:email", function(req, res) {
   //   db.Member.findOne({
   //       where: {
@@ -172,7 +170,6 @@ module.exports = function(app) {
         }
     });
   });
-
 
   // UPDATE THE MEMBER DATABASE AT REGISTRATION
   // ADD: USER FEEDBACK IF BAD EMAIL, OR EMAIL ALREADY REGISTERED
@@ -381,7 +378,6 @@ module.exports = function(app) {
     })
 
   // OTHER GET REQUETS THAT WE USE FOR TESTING
-
   app.get("/api/members", function(req, res) {
     db.Member.findAll({}).then(function(dbMember) {
       res.json(dbMember);
