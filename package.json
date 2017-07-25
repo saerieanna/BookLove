@@ -2,7 +2,7 @@
   "name": "booklove",
   "version": "1.0.0",
   "description": "TBD",
-  "main": "public/index.html",
+  "main": "server.js",
   "dependencies": {
     "axios": "^0.12.0",
     "bcryptjs": "^2.4.3",

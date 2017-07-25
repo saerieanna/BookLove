@@ -57,6 +57,7 @@ app.use(flash());
 
 // app.use(express.static(process.cwd() + "/public"));
 app.use(express.static(__dirname + '/public'));
+app.use(express.static("./public"));
 
 setupPassport(app);
 
