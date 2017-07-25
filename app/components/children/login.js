@@ -2,6 +2,8 @@ var React = require("react");
 
 var helpers = require("../utils/helpers");
 
+var PasswordModal = require("./passwordmodal.js");
+
 var login = React.createClass({
 
 	getInitialState: function() {
@@ -23,6 +25,8 @@ var login = React.createClass({
  //  	redirectRoute : function(e){
 	// 	helpers.redirect(e, this.state.email,this.props.history);
 	// },
+
+	// Add helper function here to update password if member users "forgot password" link
 
 	render: function() {
 		return (
@@ -48,7 +52,7 @@ var login = React.createClass({
 						<button className="btn red lighten-2" type="submit" name="action">Connect</button>
 						<br />
 						<br />
-						<a href="">Forgot password?</a>
+							<PasswordModal />
 					</center>
 				</div>
 			</form>

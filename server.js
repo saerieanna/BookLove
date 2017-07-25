@@ -23,7 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// DETERMINE CONNECTION
+// Determine our connection
+// =============================================================|
 if (PORT === 8080) {
 	var keys = require("./app/config/keys.js");
 } else {
@@ -49,20 +50,19 @@ const nexmo = new Nexmo({
 //     }
 //  );
 
-//Setting up login session
+// Setting up login session
 app.use(cookieParser())
 app.use(session({ secret: 'friedbanana', resave: false, saveUninitialized: false }))
 app.use(flash());
 
 app.use(express.static(process.cwd() + "/public"));
+// app.use(express.static(__dirname + '/public'));
 
 setupPassport(app);
 
-//Routes
+// Routes
 // =============================================================|
 require("./routes/routes.js")(app);
-require("./routes/landing-routes.js")(app);
-require("./routes/profile-routes.js")(app);
 
 
 // Any non API GET routes will be directed to our React App and handled by React Router

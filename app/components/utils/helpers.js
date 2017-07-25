@@ -34,6 +34,30 @@ var helper = {
       });
   },
 
+  postChapter: function(chapterUpdate, email) {
+    var setChapter = { chapter: chapterUpdate, email: email};
+    return axios.post("/api/chapter", setChapter)
+      .then(function(response) {
+        console.log("CHAPTER: ", response);
+      });
+  },
+
+  postSendEmail: function(email) {
+    var email = { email: email};
+    return axios.post("/api/send_email", email)
+      .then(function(response) {
+        console.log("EMAIL: ", response);
+      });
+  },
+
+  putUpdatePassword: function(email, password) {
+    var passwordObject = { email: email, password: password};
+    return axios.put("/api/update_password", password)
+      .then(function(response) {
+        console.log("PW: ", response);
+      });
+  },
+
 };
 
 module.exports = helper;

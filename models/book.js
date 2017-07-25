@@ -4,8 +4,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
+    },
+    chapters: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
+
+  Book.associate = function (models)
+  {
+    Book.hasMany(models.Chapter);
+
+    Book.hasMany(models.Member);
+  }
   
   return Book;
 };

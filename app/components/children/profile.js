@@ -1,3 +1,5 @@
+// TO-DO: 
+// Display book title instead of book id
 
 var React = require("react");
 
@@ -7,21 +9,40 @@ var Link = require("react-router").Link;
 
 var helpers = require("../utils/helpers");
 
-import { Image, List, Card, Feed, Progress } from 'semantic-ui-react';
+var ChapterModal = require("./chaptermodal.js");
 
+import { Image, List, Card, Container, Divider, Feed, Progress, Button, Header, Icon, Modal } from 'semantic-ui-react';
+
+
+const divStyle = {
+  padding: 20,
+  backgroundColor: '#80cbc4',
+  // backgroundColor: '#b2dfdb',
+};
+
+const listStyle = {
+  padding: 20,
+  marginTop: 20,
+  backgroundColor: '#4db6ac',
+  // backgroundColor: '#80cbc4',
+}
+
+// <Progress value={this.state.chapter} total={this.state.chapters} progress='ratio' indicating />
 
 var profile = React.createClass({
 
   // Set initial variables for the component
   getInitialState: function() {
-  	return {
+    return {
       first_name: "",
       last_name: "",
-  		photo_path: "",
+      photo_path: "",
       email: "",
       favorite_book: "",
-      goodreads_url: ""
-  	};
+      goodreads_url: "",
+      current_book: "",
+      chapter: "",
+    };
   },
 
   componentWillMount() {
@@ -34,31 +55,35 @@ var profile = React.createClass({
       last_name: data.last_name,
       email: data.email,
       favorite_book: data.favorite_book,
-      goodreads_url: data.goodreads_url
+      goodreads_url: data.goodreads_url,
+      current_book: data.current_book,
+      id: data.id,
+      chapter: data.chapter,
       });
     }.bind(this));
   },
 
-  // ADD: input field for viewing another profile
-
-  // Handle change when user inputs name, call another function to set state
+  // need access to book title and total chapters
 
   render: function() {
-  	return(
-  		<div className="container teal lighten-2">
-  			<Image src={this.state.photo_path} size='small' shape='circular' centered />
-          	<Progress value='3' total='5' progress='ratio' indicating />
-  			<List animated>
-          <List.Item icon='marker' content={this.state.first_name + " " + this.state.last_name} />
-  				<List.Item icon='book' content='I am reading [book_title]' />
-    			<List.Item icon='marker' content='Chicago, IL' />
-    			<List.Item icon='mail' content={this.state.email}/>
-    			<List.Item icon='heart' content={'My favorite book: ' +this.state.favorite_book} />
-    			<List.Item icon='linkify' content={this.state.goodreads_url} />
-  			</List>
-		</div>
-		)
-	}
+    return(
+      <div style={divStyle}>
+       <Image src={this.state.photo_path} size='small' shape='circular' centered />
+        <div style={listStyle} className="container">
+          <ChapterModal />
+          <Progress percent={this.state.chapter / this.state.chapters * 100} indicating size='medium' />
+          <List animated>
+            <List.Item icon='user' content={this.state.first_name + " " + this.state.last_name} />
+            <List.Item icon='book' content={'I am reading ' +this.state.current_book}/>
+            <List.Item icon='bookmark' content={'I just finished chapter ' + " " + this.state.chapter +"!"} />
+            <List.Item icon='mail' content={this.state.email}/>
+            <List.Item icon='heart' content={'My favorite book is ' +this.state.favorite_book} />
+            <List.Item icon='linkify' content={<a href={this.state.goodreads_url} target='_blank'><b>Goodreads Profile</b></a>}/>
+          </List>
+        </div>
+      </div>
+    )
+  }
 });
 
 module.exports=profile;
