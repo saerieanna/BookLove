@@ -20,9 +20,9 @@ var login = React.createClass({
 		this.setState(newState);
   	},
 
-  	redirectRoute : function(e){
-		helpers.redirect(e, this.state.email,this.props.history);
-	},
+ //  	redirectRoute : function(e){
+	// 	helpers.redirect(e, this.state.email,this.props.history);
+	// },
 
 	render: function() {
 		return (
@@ -45,7 +45,7 @@ var login = React.createClass({
 					</div>
 					<br />
 					<center>
-						<button className="btn red lighten-2" type="submit" name="action" >Connect</button>
+						<button className="btn red lighten-2" type="submit" name="action">Connect</button>
 						<br />
 						<br />
 						<a href="">Forgot password?</a>
