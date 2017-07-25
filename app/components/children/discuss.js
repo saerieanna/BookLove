@@ -16,12 +16,14 @@ var discuss = React.createClass({
 
 	getInitialState: function() {
 	  	return {
+        photo_path:"",
 	  		first_name: "",
 	  		last_name: "",
 	  		email: "",
 	  		current_book:"",
 	  		chapter: "",
-	  		photo_path:"",
+        chapter:"",
+        comments:[]
 	  	};
 	},
 
@@ -35,21 +37,21 @@ var discuss = React.createClass({
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
-      favorite_book: data.favorite_book,
       goodreads_url: data.goodreads_url,
       chapter:data.chapter
       });
   }.bind(this));
 
     axios.get("/comment",{chapter:this.state.chapter}).then(function(response){
+      console.log(response.data);
       this.setState({
-        comments:response
+        comments:response.data
       });
-      var comments=this.state.comments
+      console.log(this.state);
       //need to be fixed!!!
-      listComment=comments.map((comment)=>
-        <li>{comment.sender} + ' send out comment: ' + {comment.comment} + 'about book ' + {comment.title}</li>
-      );
+      var listComment=this.state.comments.map(comment=>{
+        return <li>{comment.sender} + ' send out comment: ' + {comment.comment} + 'about book ' + {comment.title}</li>
+      });
     }.bind(this));
   },
 
@@ -67,12 +69,16 @@ var discuss = React.createClass({
 		return(
   		<div style={divStyle}>
   			<Image src={this.state.photo_path} size='small' shape='circular' centered />
-        <div className="col s6">
-          <ul>{listComment}</ul>
+        <div className="row">
+          <div className="col s6 offset-s3">
+            <ul>{listComment}</ul>
+          </div>
         </div>
-        <div className="input-field col s6">
-            <input id="comment" type="text" value={this.state.title} onChange={this.handleChange} />
-                <label>Comment: </label>
+        <div className="row">
+          <div className="input-field col s6 offset-s3">
+              <input id="comment" type="text" value={this.state.title} onChange={this.handleChange} />
+                  <label>Comment: </label>
+          </div>
         </div>
 		  </div>
 		)
