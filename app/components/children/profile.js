@@ -101,7 +101,7 @@ var profile = React.createClass({
   render: function() {
     return(
       <div style={divStyle}>
-       <Image src={this.state.photo_path} size='small' shape='circular' centered />
+       <Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
         <div style={listStyle} className="container">
           <ChapterModal />
           <Progress percent={this.state.chapter / this.state.chapters * 100} indicating size='medium' />
