@@ -63,6 +63,29 @@ var profile = React.createClass({
     }.bind(this));
   },
 
+  // Want to add conditional so that if current_book is 0, a different list component will display.
+
+ // HasBook: function() {
+ //    return <List.Item icon='book' content={'I am reading ' +this.state.current_book}/>
+ //  },
+
+ // HasNoBook: function() {
+ //    return <List.Item icon='book' content={'I am not reading a book. How sad!'}/>
+ //  },
+
+ CheckBook: function() {
+    const reading = this.state.current_book;
+    if (reading === 0) {
+      return
+      console.log("shslghslshsls!");
+      // return <HasBook />;
+    }
+      // return <HasNoBook />;
+      return console.log("nope");
+    },
+
+  // <CheckBook isLoggedIn={true} />
+
   // need access to book title and total chapters
 
   render: function() {
@@ -75,6 +98,7 @@ var profile = React.createClass({
           <List animated>
             <List.Item icon='user' content={this.state.first_name + " " + this.state.last_name} />
             <List.Item icon='book' content={'I am reading ' +this.state.current_book}/>
+            <List.Item icon='book' content={'I am not reading a book. How sad!'}/>
             <List.Item icon='bookmark' content={'I just finished chapter ' + " " + this.state.chapter +"!"} />
             <List.Item icon='mail' content={<a href={this.state.email} target='_blank'><b>rkpalmore@gmail.com</b></a>}/>
             <List.Item icon='heart' content={'My favorite book is ' +this.state.favorite_book} />
