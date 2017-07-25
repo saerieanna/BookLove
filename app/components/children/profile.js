@@ -76,7 +76,7 @@ var profile = React.createClass({
             <List.Item icon='user' content={this.state.first_name + " " + this.state.last_name} />
             <List.Item icon='book' content={'I am reading ' +this.state.current_book}/>
             <List.Item icon='bookmark' content={'I just finished chapter ' + " " + this.state.chapter +"!"} />
-            <List.Item icon='mail' content={this.state.email}/>
+            <List.Item icon='mail' content={<a href={this.state.email} target='_blank'><b>rkpalmore@gmail.com</b></a>}/>
             <List.Item icon='heart' content={'My favorite book is ' +this.state.favorite_book} />
             <List.Item icon='linkify' content={<a href={this.state.goodreads_url} target='_blank'><b>Goodreads Profile</b></a>}/>
           </List>
