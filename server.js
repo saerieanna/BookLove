@@ -55,11 +55,11 @@ app.use(cookieParser())
 app.use(session({ secret: 'friedbanana', resave: false, saveUninitialized: false }))
 app.use(flash());
 
-// app.use(express.static(process.cwd() + "/public"));
-app.use('/static', express.static(__dirname + '/public'));
-// app.use(express.static("./public"));
-
 setupPassport(app);
+
+app.use('/static', express.static(process.cwd() + "/public"));
+// app.use('/static', express.static(__dirname + '/public'));
+// app.use(express.static("./public"));
 
 // Routes
 // =============================================================|
@@ -69,11 +69,9 @@ require("./routes/routes.js")(app);
 // Any non API GET routes will be directed to our React App and handled by React Router
 app.get("*", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
-
   // app.use(express.static(process.cwd() + "/public"));
-  
-
 });
+
 
 
 // Syncing our sequelize models and then starting our express app
