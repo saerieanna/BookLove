@@ -38,9 +38,9 @@ const headerStyle = {
  //    alert("Sending text message!");
  //  };
 
-// function sendTextMessage() {
-//     alert("Hi there!");
-//   };
+function sendTextMessage() {
+    alert("Hi there!");
+  };
 
 var ChapterModal = React.createClass({
 
