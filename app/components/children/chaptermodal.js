@@ -12,11 +12,42 @@ const headerStyle = {
   backgroundColor: '#80cbc4',
 }
 
+// var keys = require("../../config/keys.js");
+
+// const Nexmo = require('nexmo');
+// const nexmo = new Nexmo({
+//     apiKey: keys.apiKey,
+//     apiSecret: keys.apiSecret
+// });
+
+// // TESTING NEXMO
+// function sendTextMessage() {
+// nexmo.message.sendSms(
+//   12013517019, '13125604191', 'Hey girl!',
+//     (err, responseData) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         console.dir(responseData);
+//       }
+//     }
+//  );
+// }
+
+ // sendTextMessage: function() {
+ //    alert("Sending text message!");
+ //  };
+
+// function sendTextMessage() {
+//     alert("Hi there!");
+//   };
+
 var ChapterModal = React.createClass({
 
   getInitialState: function() {
     return {
       chapterUpdate: "",
+      // email: "",
     }
   },
 
@@ -29,17 +60,16 @@ var ChapterModal = React.createClass({
   },
 
   handleSubmit: function(event) {
-    // Not sure about this line ...
     event.preventDefault();
     console.log("CLICKED");
-    helpers.postChapter(this.state.chapterUpdate, this.state.email)
+    helpers.postChapter(this.state.chapterUpdate)
   },
 
-  // NEEDS WORK: NEXMO HANDLER //////////
-  // handleClick: function(event) {
-  //   alert("HEHEHTHTHHTHTTH!");
-  //   helpers.postStatus(this.state.email);
-  // },
+  handleClick: function(event) {
+    alert("Sending text message!");
+    sendTextMessage();
+  },
+
 
   render: function() {
     return(

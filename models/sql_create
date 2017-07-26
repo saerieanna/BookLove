@@ -35,4 +35,10 @@ INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '7');
 INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '8');
 INSERT INTO `book_love`.`chapters` (`book_id`, `chapter`) VALUES ('1', '9');
 
+// JAWSDB SEED DATA
+
+INSERT INTO `Members` (`first_name`, `last_name`, `email`, `photo_path`) VALUES ('Rebecca', 'Palmore', 'rkpalmore@gmail.com', '/assets/imgs/profilePhotos/RebeccaPalmore.png');
+INSERT INTO `Members` (`first_name`, `last_name`, `email`, `photo_path`) VALUES ('Yilin', 'Xu', 'yellen10@gmail.com', '/assets/imgs/profilePhotos/YilinXu.png');
+INSERT INTO `Members` (`first_name`, `last_name`, `email`, `photo_path`) VALUES ('Sarah', 'Mandley', 'saerieanna@gmail.com', '/assets/imgs/profilePhotos/SarahMandley.png');
+
 

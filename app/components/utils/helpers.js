@@ -25,7 +25,7 @@ var helper = {
   },
 
   postChapter: function(chapterUpdate, email) {
-    var setChapter = { chapter: chapterUpdate, email: email};
+    var setChapter = { chapter: chapterUpdate};
     return axios.post("/api/chapter", setChapter)
       .then(function(response) {
         console.log("CHAPTER: ", response);
@@ -42,11 +42,10 @@ var helper = {
   },
 
   // NOT FUNCTIONING YET, NEEDS WORK
-  // postStatus: function(email) {
-  //   var email = { email: email};
-  //   return axios.post("api/status", email)
+  // postStatus: function() {
+  //   return axios.post("api/status")
   //     .then(function(response){
-  //       console.log("User is finished with book: ", email)
+  //       console.log("User is finished with book")
   //     });
   // },
 
@@ -54,8 +53,7 @@ var helper = {
     var email = { email: email};
     return axios.post("/api/send_email", email)
     .then(function(response) {
-        console.log("Password: ", response.data.password)
-        return(response.data.password);
+        console.log("Password from helper: ", response.data.password)
       });
   },
 

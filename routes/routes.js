@@ -303,6 +303,22 @@ module.exports = function(app) {
 
          })
 
+  app.post("/api/status", function(req, res) {
+    require('connect-ensure-login').ensureLoggedIn('/login'),
+     function(req,res) {
+      alert("HEHEHTHTHSHSH!!!!");
+          console.log("this is" + req.user.email);
+          res.json(req.user)
+        }
+    db.Member.findOne({
+      where: {
+        email: req.body.email
+      }
+    }).then(function(dbMember) {
+      res.json(dbMember);
+    });
+  });
+
   // OTHER GET REQUETS THAT WE USE FOR TESTING
   // app.get("/api/members", function(req, res) {
   //   db.Member.findAll({}).then(function(dbMember) {

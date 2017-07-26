@@ -21,14 +21,6 @@ var login = React.createClass({
 		this.setState(newState);
   	},
 
-  	updatePassword: function(email, password) {
-  		alert("WOOT!");
-  		var dataObject = {email: this.state.email, password : this.state.password}
-  		helpers.putUpdatePassword(dataObject)
-  	},
-
-	// Add helper function here to update password if member users "forgot password" link
-
 	render: function() {
 		return (
 	  	<div className="login">

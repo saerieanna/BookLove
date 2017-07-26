@@ -7,7 +7,6 @@ var helpers = require("../utils/helpers");
 
 var register = React.createClass({
 
-  // Set initial variables for the component
   getInitialState: function() {
   	return {
   		first_name: "",
@@ -21,16 +20,13 @@ var register = React.createClass({
   	};
   },
 
-  // Whenever we detect any change in the input, we register it
   handleChange: function(event) {
   	console.log("INPUT CHANGED");
-  	// Capture any change in the input fields
   	var newState = {};
   	newState[event.target.id] = event.target.value;
   	this.setState(newState);
   },
 
-  // Handle the submit button
   handleSubmit: function(event) {
   	event.preventDefault();
   	console.log("CLICKED");
