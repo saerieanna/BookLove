@@ -22,7 +22,7 @@ var discuss = React.createClass({
 	  		email: "",
 	  		current_book:"",
 	  		chapter: "",
-        chapter:"",
+        newcomment:"",
         comments:[]
 	  	};
 	},
@@ -38,51 +38,59 @@ var discuss = React.createClass({
       last_name: data.last_name,
       email: data.email,
       goodreads_url: data.goodreads_url,
-      chapter:data.chapter
-      });
-  }.bind(this));
-
-    axios.get("/comment",{chapter:this.state.chapter}).then(function(response){
-      console.log(response.data);
-      this.setState({
-        comments:response.data
-      });
-      console.log(this.state);
-      //need to be fixed!!!
-      var listComment=this.state.comments.map(comment=>{
-        return <li>{comment.sender} + ' send out comment: ' + {comment.comment} + 'about book ' + {comment.title}</li>
+      chapter:data.chapter,
+      current_book:data.current_book
       });
     }.bind(this));
+
+    axios.get("/comment").then(function(response){
+      var comments=response.data.map((comment)=>{
+              return {comment:comment.comment,book:comment.book,chapter:comment.chapter,sender:comment.sender}
+            });
+      this.setState({comments:comments});
+  }.bind(this));
   },
+
 
   handleChange: function(event) {
     console.log("INPUT CHANGED");
     // Capture any change in the input fields
     var info={};
     info[event.target.id]=event.target.value;
-    axios.post("comment",info).then(function(req,res){
-      console.log("new comment inserted");
-    })
+    // axios.post("comment",info).then(function(req,res){
+    //   console.log("new comment inserted");
+    // })
+    this.setState(info);
+  },
+
+  handleSubmit: function(event) {
+    event.preventDefault();
+    console.log("CLICKED");
+    helpers.postNewComment(this.state.chapter,this.state.email,this.state.newcomment,this.state.current_book)
   },
 
 	render: function() {
+    console.log("print this" + this.state.comments);
+    var listComment = this.state.comments.map((comment,i) => {
+              return <li key={i}>{comment.sender} says : {comment.comment} on Book: {comment.book} Chapter:{comment.chapter} <hr /></li>
+          });
 		return(
   		<div style={divStyle}>
   			<Image src={this.state.photo_path} size='small' shape='circular' centered />
         <div className="row">
-          <div className="col s6 offset-s3">
-            <ul>{listComment}</ul>
+          <div className="col s4 offset-s4">
+            <div>{listComment}</div>
           </div>
         </div>
+
         <div className="row">
-          <div className="input-field col s6 offset-s3">
-              <input id="comment" type="text" value={this.state.title} onChange={this.handleChange} />
-                  <label>Comment: </label>
-          </div>
+          <form onSubmit={this.handleSubmit} className="commentForm col s4 offset-s4">
+            <input type="text" value={this.state.newcomment} id="newcomment" onChange={this.handleChange} placeholder="****Comment Here****" />
+            <button type="submit" className="btn btn-success">Comment</button>
+          </form>
         </div>
 		  </div>
 		)
 	}
 });
-
 module.exports=discuss;

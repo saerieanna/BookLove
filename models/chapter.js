@@ -13,10 +13,12 @@ module.exports = function(sequelize, DataTypes) {
     
     Chapter.associate = function (models) {
       Chapter.belongsTo(models.Book, {
-        sourceKey:"book_id",
+        targetKey:"id",
         onDelete: "set null",
         onUpdate: "cascade"
       });
     };
   return Chapter;
 };
+
+

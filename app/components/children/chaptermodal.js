@@ -26,9 +26,9 @@ var ChapterModal = React.createClass({
   },
 
   handleSubmit: function(event) {
-    // event.preventDefault();
+    event.preventDefault();
     console.log("CLICKED");
-    helpers.postChapter(this.state.chapterUpdate, this.state.email, this.state.history)
+    helpers.postChapter(this.state.chapterUpdate, this.state.email)
   },
 
   render: function() {

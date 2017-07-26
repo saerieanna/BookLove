@@ -14,12 +14,10 @@ module.exports = function(sequelize, DataTypes) {
       MemberBook.belongsTo(models.Book, {
         foreignKey: "book_id",
         targetKey: "id",
-        onDelete: "cascade"
       });
       MemberBook.belongsTo(models.Member, {
         foreignKey: "member_id",
         targetKey: "id",
-        onDelete:"cascade"
       });
     };
 

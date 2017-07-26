@@ -31,16 +31,25 @@ var helper = {
       .then(function(response) {
         console.log("print out response")
         console.log(response);
+        window.location.href="/login"
       });
   },
 
-  postChapter: function(chapterUpdate, email,history) {
+  postChapter: function(chapterUpdate, email) {
     var setChapter = { chapter: chapterUpdate, email: email};
     return axios.post("/api/chapter", setChapter)
       .then(function(response) {
         console.log("CHAPTER: ", response);
-        history.push("discuss");
+        window.location.href="/discuss"
       });
+  },
+
+  postNewComment: function(chapter,email,newcomment,current_book){
+    var setComment={chapter:chapter,email:email,comment:newcomment,BookId:current_book};
+    return axios.post("/api/comment",setComment).then(function(response){
+      console.log("Comment ",response);
+      window.location.href="/discuss"
+    })
   },
 
   postSendEmail: function(email) {

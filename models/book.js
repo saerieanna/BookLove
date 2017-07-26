@@ -13,10 +13,12 @@ module.exports = function(sequelize, DataTypes) {
 
   Book.associate = function (models)
   {
-    Book.hasMany(models.Chapter);
-
-    Book.hasMany(models.Member);
+    Book.belongsTo(models.Member,{
+      foreignKey:"current_book",
+      targetKey:"id",
+    });
   }
   
   return Book;
 };
+

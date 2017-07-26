@@ -16,9 +16,21 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Discussion.associate = function (models) {
-    Discussion.hasMany(models.Member);
-    Discussion.hasMany(models.Book);
+    Discussion.belongsTo(models.Member,{
+      foreignKey:"email",
+      targetKey:"email",
+      onDelete:"cascade"
+    });
+    Discussion.belongsTo(models.Book,{
+      targetKey:"id",
+      onDelete:"set null",
+      onUpdate:"cascade"
+    });
+    Discussion.belongsTo(models.Chapter),{
+      targetKey:"chapter",
+      foreignKey:"chapter",
+      onDelete:"cascade"
+    }
   }
   return Discussion;
 };
-

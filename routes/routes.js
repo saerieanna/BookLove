@@ -67,8 +67,7 @@ module.exports = function(app) {
                         id: member_id
                     }
                 }).then(function(data) {
-                    res.redirect("/login");
-                    console.log("it didn't redirect");
+                    res.json(data);
                   });
                 // });
             };
@@ -107,34 +106,40 @@ module.exports = function(app) {
 
   app.get("/comment",require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req,res){
+      console.log("current chapter" +req.user.chapter);
       db.Discussion.findAll({
         where:{
           chapter: {
-            $gt:req.body.chapter
+            $lte:req.user.chapter
           }
-        },
+        },include:[{model:db.Member},{model:db.Book}],
         limit:10
       }).then(function(data){
-        var comment=[];
+        var comments=[];
+        data=JSON.parse(JSON.stringify(data));
+        console.log(data);
         for(key in data){
-          comment.push({
-            comment:data[key].dataValues.comment,
-            book:data[Key].dataValue.title,
-            sender:data[key.dataValues.first_name]
+          comments.push({
+            comment:data[key].comment,
+            book:data[key].Book.title,
+            chapter:data[key].chapter,
+            sender:data[key].Member.first_name
           })
         }
-        res.json(comment);
+        console.log(comments);
+        res.json(comments);
       })
     });
 
-  app.post("/comment",require('connect-ensure-login').ensureLoggedIn('/login'),
+  app.post("/api/comment",require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req,res){
-      db.Discussion.insert({
-        chapter:user.chapter,
+      db.Discussion.create({
+        chapter:req.body.chapter,
         comment:req.body.comment,
-        email:user.email
+        email:req.body.email,
+        BookId:req.body.BookId
       }).then(function(result){
-        console.log("comment added in db")
+        res.json(result);
       })
     });
 
@@ -258,11 +263,9 @@ module.exports = function(app) {
                             where: {
                                 id: member_id
                             }
-                        }).then(function() {
-                          console.log("want to redirect")
-                            res.redirect("/discuss");
-
-                    });
+                        }).then(function(data) {
+                            res.json(data)
+                  });
                 });
             };
       });
