@@ -11,20 +11,26 @@ var helpers = require("../utils/helpers");
 
 var ChapterModal = require("./chaptermodal.js");
 
-import { Image, List, Card, Container, Divider, Feed, Progress, Button, Header, Icon, Modal } from 'semantic-ui-react';
+import { Image, List, Container, Progress, Button, Header, Icon, Modal } from 'semantic-ui-react';
 
 
 const divStyle = {
   padding: 20,
   backgroundColor: '#80cbc4',
-  // backgroundColor: '#b2dfdb',
 };
 
 const listStyle = {
   padding: 20,
   marginTop: 20,
   backgroundColor: '#4db6ac',
-  // backgroundColor: '#80cbc4',
+};
+
+const nameStyle = {
+  paddingBottom: 10,
+  paddingTop: 10,
+  fontSize: 22,
+  textAlign: 'center',
+  color: '#ffffff',
 };
 
 
@@ -64,59 +70,30 @@ var profile = React.createClass({
     }.bind(this));
   },
 
-  // Want to add conditional so that if current_book is 0, a different list component will display.
-
- // HasBook: function() {
- //    return <List.Item icon='book' content={'I am reading ' +this.state.current_book}/>
- //  },
-
- // HasNoBook: function() {
- //    return <List.Item icon='book' content={'I am not reading a book. How sad!'}/>
- //  },
-
-// <CheckBook reading={!0} />
-
-
- // CheckBook: function() {
- //    const reading = this.state.current_book;
- //    if (reading === 0) {
- //      return
- //      console.log("shslghslshsls!");
- //      // return <HasBook />;
- //    }
- //      // return <HasNoBook />;
- //      return console.log("nope");
- //    },
-
- // renderHasBook: function() {
- //  if (this.state.current_book === 0) {
- //    alert("HSHSHSHSHGIGHSLGHL!");
- //    console.log(this.state.current_book);
- //  }
- // },
-
-
   // need access to book title and total chapters
 
   render: function() {
     return(
       <div style={divStyle}>
        <Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
+         <h2 style={nameStyle}>{this.state.first_name + " " + this.state.last_name}</h2>
         <div style={listStyle} className="container">
           <ChapterModal />
           <Progress percent={this.state.chapter / this.state.chapters * 100} indicating size='medium' />
           <List animated>
-            <List.Item icon='user' content={this.state.first_name + " " + this.state.last_name} />
+            <List.Item icon='book' content={
+              this.state.current_book != 0 ?
+              ('I am reading ' +this.state.current_book) :
+              ('I\'m not reading a book right now. Sad!')}/>
 
-
-            <List.Item icon='book' content={'I am reading ' +this.state.current_book}/>
-
-            <List.Item icon='book' content={'I am not reading a book. How sad!'}/>
-
-            <List.Item icon='bookmark' content={'I just finished chapter ' + " " + this.state.chapter +"!"} />
-            <List.Item icon='mail' content={<a href={this.state.email} target='_blank'><b>rkpalmore@gmail.com</b></a>}/>
+            <List.Item icon='bookmark' content={
+              this.state.current_book != 0 ?
+              ('I just finished chapter ' + " " + this.state.chapter +"!") :
+              ('This is where we\'ll track my chapter progress')
+            }/>
             <List.Item icon='heart' content={'My favorite book is ' +this.state.favorite_book} />
-            <List.Item icon='linkify' content={<a href={this.state.goodreads_url} target='_blank'><b>Goodreads Profile</b></a>}/>
+            <List.Item icon='mail' content={this.state.email}/>
+            <List.Item icon='linkify' content={<a href={this.state.goodreads_url} target='_blank'>Check out my <b>Goodreads profile</b></a>}/>
           </List>
         </div>
       </div>

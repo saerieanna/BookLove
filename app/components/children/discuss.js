@@ -76,7 +76,7 @@ var discuss = React.createClass({
           });
 		return(
   		<div style={divStyle}>
-  			<Image src={this.state.photo_path} size='small' shape='circular' centered />
+  			<Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
         <div className="row">
           <div className="col s4 offset-s4">
             <div>{listComment}</div>

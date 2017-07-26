@@ -13,7 +13,6 @@ var login = React.createClass({
 	  	};
 	},
 
-  // Whenever we detect any change in the input, we register it
   	handleChange: function(event) {
 	  	console.log("INPUT CHANGED");
 		// Capture any change in the input fields
@@ -22,9 +21,11 @@ var login = React.createClass({
 		this.setState(newState);
   	},
 
- //  	redirectRoute : function(e){
-	// 	helpers.redirect(e, this.state.email,this.props.history);
-	// },
+  	updatePassword: function(email, password) {
+  		alert("WOOT!");
+  		var dataObject = {email: this.state.email, password : this.state.password}
+  		helpers.putUpdatePassword(dataObject)
+  	},
 
 	// Add helper function here to update password if member users "forgot password" link
 
@@ -34,7 +35,9 @@ var login = React.createClass({
 
 			<form action="/login" method="post" className="col s12">
 				<div className="form-container">
-					<h3 className="red-text text-light-5">Welcome back</h3>
+				  <center>
+					<h3 className="teal-text text-lighten-2">Welcome back</h3>
+				  </center>
 					<div className="row">
 						<div className="input-field col s12">
 							<input id="email" name="username" type="email" value={this.state.email} onChange={this.handleChange} className="validate" />

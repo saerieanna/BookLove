@@ -1,4 +1,4 @@
-// Borrowing from 061717 Address-Finder-Solution
+
 var axios = require("axios");
 
 var helper = {
@@ -13,17 +13,6 @@ var helper = {
         return results;
       });
   },
-
-  // redirect: function(event,email,history) {
-  //     axios.get("/api/members/"+email).then(function(res){
-  //       if(res){
-  //         history.push("profile");
-  //         console.log("RES: ", res);
-  //       }else{
-  //         history.push("vote")
-  //       }
-  //     });
-  // },
 
   postNewMember: function(first_name, last_name, email, password, phone, goodreads_url, favorite_genre, favorite_book) {
     var newMember = { first_name: first_name, last_name: last_name, email: email, password: password, phone: phone, goodreads_url: goodreads_url, favorite_genre: favorite_genre, favorite_book: favorite_book};
@@ -44,35 +33,29 @@ var helper = {
       });
   },
 
-  postNewComment: function(chapter,email,newcomment,current_book){
-    var setComment={chapter:chapter,email:email,comment:newcomment,BookId:current_book};
-    return axios.post("/api/comment",setComment).then(function(response){
-      console.log("Comment ",response);
+  postNewComment: function(chapter, email, newcomment, current_book){
+    var setComment={chapter:chapter, email:email, comment:newcomment,BookId:current_book};
+    return axios.post("/api/comment", setComment).then(function(response){
+      console.log("Comment ", response);
       window.location.href="/discuss"
     })
+  },
 
   // NOT FUNCTIONING YET, NEEDS WORK
-  postStatus: function(email) {
-    var email = { email: email};
-    return axios.post("api/status", email)
-      .then(function(response){
-        console.log("User is finished with book: ", email)
-      });
-  },
+  // postStatus: function(email) {
+  //   var email = { email: email};
+  //   return axios.post("api/status", email)
+  //     .then(function(response){
+  //       console.log("User is finished with book: ", email)
+  //     });
+  // },
 
   postSendEmail: function(email) {
     var email = { email: email};
     return axios.post("/api/send_email", email)
-      .then(function(response) {
-        console.log("EMAIL: ", response);
-      });
-  },
-
-  putUpdatePassword: function(email, password) {
-    var passwordObject = { email: email, password: password};
-    return axios.put("/api/update_password", password)
-      .then(function(response) {
-        console.log("PW: ", response);
+    .then(function(response) {
+        console.log("Password: ", response.data.password)
+        return(response.data.password);
       });
   },
 
