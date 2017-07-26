@@ -49,5 +49,8 @@
   "bugs": {
     "url": "https://github.com/saerieanna/BookLove/issues"
   },
-  "homepage": "https://github.com/saerieanna/BookLove#readme"
+  "homepage": "https://github.com/saerieanna/BookLove#readme",
+  "engines": {
+    "node": "7.3.0"
+  }
 }
