@@ -24,9 +24,7 @@
     "react-dom": "^15.1.0",
     "react-router": "^2.4.1",
     "semantic-ui-react": "^0.71.1",
-    "sequelize": "^4.2.1"
-  },
-  "devDependencies": {
+    "sequelize": "^4.2.1",
     "axios": "^0.12.0",
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
@@ -36,9 +34,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build": "webpack -w",
-    "dev": "webpack & node server.js"
+    "postinstall": "webpack",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -49,5 +46,8 @@
   "bugs": {
     "url": "https://github.com/saerieanna/BookLove/issues"
   },
-  "homepage": "https://github.com/saerieanna/BookLove#readme"
+  "homepage": "https://github.com/saerieanna/BookLove#readme",
+  "engines": {
+    "node": "7.3.0"
+  }
 }
