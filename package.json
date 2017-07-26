@@ -36,9 +36,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build": "webpack",
-    "dev": "webpack & node server.js"
+    "postinstall": "webpack",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
