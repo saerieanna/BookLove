@@ -102,8 +102,10 @@ module.exports = function(app) {
           chapter: {
             $lte:req.user.chapter
           }
-        },include:[{model:db.Member},{model:db.Book}],
-        limit:10
+        },
+        order: [['updatedAt', 'DESC']],
+        limit:3,
+        include:[{model:db.Member},{model:db.Book}],
       }).then(function(data){
         var comments=[];
         data=JSON.parse(JSON.stringify(data));
@@ -113,7 +115,8 @@ module.exports = function(app) {
             comment:data[key].comment,
             book:data[key].Book.title,
             chapter:data[key].chapter,
-            sender:data[key].Member.first_name
+            sender:data[key].Member.first_name,
+            image:data[key].Member.photo_path
           })
         }
         console.log(comments);

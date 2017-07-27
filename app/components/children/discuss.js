@@ -3,12 +3,20 @@ var axios = require("axios");
 var Link = require("react-router").Link;
 var helpers = require("../utils/helpers");
 import { Image, List, Card, Container, Divider, Feed, Progress, Button, Header, Icon, Modal } from 'semantic-ui-react';
-
 const divStyle = {
   padding: 20,
   backgroundColor: '#80cbc4',
   // backgroundColor: '#b2dfdb',
 };
+
+const text={
+  padding:10,
+
+};
+
+const commentDiv={
+  margin:15
+}
 
 var listComment=[];
 
@@ -45,7 +53,7 @@ var discuss = React.createClass({
 
     axios.get("/comment").then(function(response){
       var comments=response.data.map((comment)=>{
-              return {comment:comment.comment,book:comment.book,chapter:comment.chapter,sender:comment.sender}
+              return {comment:comment.comment,book:comment.book,chapter:comment.chapter,sender:comment.sender,image:comment.image}
             });
       this.setState({comments:comments});
   }.bind(this));
@@ -70,16 +78,17 @@ var discuss = React.createClass({
   },
 
 	render: function() {
-    console.log("print this" + this.state.comments);
+    console.log("print this" + JSON.stringify(this.state.comments));
     var listComment = this.state.comments.map((comment,i) => {
-              return <li key={i}>{comment.sender} says : {comment.comment} on Book: {comment.book} Chapter:{comment.chapter} <hr /></li>
+
+              return <div key={i}><img src={'/static'+comment.image} className="circle col s2" /><p style={text}>{comment.comment} </p> <p>{comment.book}, Chapter {comment.chapter}</p><hr /></div>
           });
 		return(
   		<div style={divStyle}>
   			<Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
         <div className="row">
           <div className="col s4 offset-s4">
-            <div>{listComment}</div>
+            <div style={commentDiv}>{listComment}</div>
           </div>
         </div>
 
