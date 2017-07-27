@@ -339,23 +339,6 @@ module.exports = function(app) {
       });
   });
 
-  // update book title in book table and current book in member table
-  app.post("/api/status", function(req, res) {
-    require('connect-ensure-login').ensureLoggedIn('/login'),
-     function(req,res) {
-      alert("HEHEHTHTHSHSH!!!!");
-          console.log("this is" + req.user.email);
-          res.json(req.user)
-        }
-    db.Member.findOne({
-      where: {
-        email: req.body.email
-      }
-    }).then(function(dbMember) {
-      res.json(dbMember);
-    });
-  });
-
   app.get("/book",
     require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req,res){
@@ -386,7 +369,21 @@ module.exports = function(app) {
           attributes: ['phone']
       }).then(function(data){
         console.log("PHONE NUMBERS ", data);
-
+        // add function here
+        const Nexmo = require('nexmo');
+const nexmo = new Nexmo({
+    apiKey: keys.apiKey,
+      apiSecret: keys.apiSecret
+});
+        nexmo.message.sendSms(
+          12013517019, '13125604191', user +' finished ' +book,
+          (err, responseData) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.dir(responseData);
+    }
+});
         res.json(data);
     });
   });
