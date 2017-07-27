@@ -57,6 +57,14 @@ var helper = {
       });
   },
 
+  postBookWinner: function(book) {
+    var bookWinner = { book: book};
+    return axios.post("/api/book_winner", book)
+    .then(function(response) {
+      console.log("Book Winner Stored", response);
+    });
+  },  
+
 };
 
 module.exports = helper;

@@ -47,3 +47,24 @@ h5
 .display-linebreak {
 	white-space: 'pre-wrap';
 }
+
+.purple lighten-2 {
+	margin-top: 20px;
+}
+
+.flow-text {
+	margin-bottom: 20px;
+}
+
+.light-blue.darken-1 {
+	text-white;
+}
+
+.renderApiData {
+	line-height: 100%;
+	word-spacing: 8px;
+}
+
+.directVote {
+	text-align: center;
+}

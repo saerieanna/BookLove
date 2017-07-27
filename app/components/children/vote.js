@@ -4,116 +4,90 @@ var axios = require("axios");
 
 var Link = require("react-router").Link;
 
+var {Rating, Button} =  require("semantic-ui-react");
+
+var helpers = require("../utils/helpers");
+
 var vote = React.createClass({
     getInitialState: function() {
-        return { shelf: [], count: 0 };
-        // , counter: 0 };//;
-        //  this.state = { counter: 0};
-        //  this.increment = this.increment.bind(this);
-    },
-
-    incrementCount: function(book) {
-        book.likes = book.likes + 1;
-        this.forceUpdate();
-    },
-
-    handleChange: function(book) {
-        this.setState({
-            shelf:book.target.value
-    });
+        return { shelf: [],
+                clickedBook: ''};
     },
 
 
-
-
-//     clickLike: function(e) {
-//     document.getElementById('{book.title').innerHTML = 'Like';
-//     e.preventDefault();
-// },
-
-    
-     // handleOptionChange: function (changeEvent) {
-                // this.setState({
-                //     selectedOption: changeEvent.target.book.title
-                // });
-                   
-            // },
-    
-
-     loadServerData: function() {
+    loadServerData: function() {
         $.get("/shelf", function(result) {
-            if (this.isMounted()) {
-                var shelf = JSON.parse(result);
-                console.log(shelf);
-                this.setState({ shelf: shelf });
-              
-            }
+        var shelf = JSON.parse(result);
+        this.setState({ shelf: shelf });
         }.bind(this))
 
     },
 
-     // increment(e) {
-     //        this.setState({Counter: this.state.counter +1});
-
-     //        },
-            // this.setState((previousState) => Update(previousState, {
-            //     counter:
-            //     {
-            //         counter: previousState.counter + 1
-            //     }
-            // }))
-                    //     counter: prevState.counter + 1
-        //     }));
-        // }, 
-
     componentDidMount: function() {
-        this.intervalID = setInterval(this.loadServerData, 3000)
-      
+        this.loadServerData();
     },
 
-    componentWillUnmount: function() {
-        clearInterval(this.intervalID)
-    },
+    handleChange: function(event, data) {
+    console.log("VALUE ================", data.value[0]);
+    this.setState({clickedBook: data.value[0] });
+    helpers.postBookWinner(this.state.clickedBook);
+   
+  },
+
+     handleSubmit: function(event) {
+    event.preventDefault();
+    console.log("CLICKED Winner");
+    
+  },
+
 
     render: function() {
         if (this.state.shelf.length === 0) {
             return null
         } else 
         
-            var titles = this.state.shelf.slice(0, 5).map(book => {
-                return <div key = {book.title} value={this.state.shelf} onChange={this.handleChange} className = "display-linebreak"> <h4 className="purple lighten-2">Book: </h4> <img className = "display-linebreak" src= {book.image_url} />  <h5 className=" light-blue lighten-3">Title: </h5> { book.title } <h5 className="light-blue lighten-1">Author: </h5> { book.authors[0].author[0].name} <h5 className=" light-blue darken-1">Description: </h5> { book.description } <h5 className=" light-blue darken-3">Average rating: </h5> { book.average_rating } <div> <p> likes {book.likes} </p> <button className= "btn btn-primary" onClick= {this.incrementCount.bind(this, book)}>like</button>
-                       </div> </div>
-
-            });
-
+        var titles = this.state.shelf.slice(0, 5).map(book => {
+             return( 
+                <div key = {book.title} className = "display-linebreak" className="flow-text"> 
+                    <h4 className="flow-text" className="card-panel purple lighten-2"></h4> 
+                        <a href={book.link[0]} target="_blank"> 
+                            <img className = "display-linebreak" src= {book.image_url} />
+                        </a>
+                    <div>
+                        <Rating icon='heart' defaultRating={1} maxRating={5} /> 
+                    </div>  
+                        <h5 className=" light-blue lighten-3"></h5> { book.title } 
+                        <h5 className="light-blue lighten-1" >Author: </h5> { book.authors[0].author[0].name} 
+                        <h5 className=" light-blue darken-3">Average rating: </h5> { book.average_rating } 
+                        <h5 className=" light-blue darken-1">Description: </h5> { book.description } 
+                        <Button type="button" 
+                                onSubmit={this.handleSubmit} 
+                                value={book.title}
+                                onClick={this.handleChange}>Winner</Button>
+                </div>
+                ) 
+             })
       
              return (
-            <div className="register">
-                <div className="flow-text"> {titles} 
-                </div> 
-            </div>
+                <div className="register flow-text">
+                    <br></br>
+                    <br></br>
+                        <div className="directVote" 
+                             className="flow-text">
+                                <h2 className="flow-text">Please rank each book between one and five hearts.  Most hearts = #Winner </h2>
+                        </div>
+                    <br></br>
+                    <br></br>
+                 <div className="flow-text renderApiData"> {titles} </div> 
+               
+                </div>
           
             )
-        }
+        
+
+            }
 
     });
 
              
 module.exports = vote;
-
-
- 
-
-//for radio buttons//
-// <div className="poll"><form action="#"> <p> <input className="validate" className="with-gap" name="voting-mech" type="radio" id="test3" value={book.title} checked={this.state.selectedOption === {book.title}} onChange={this.handleOptionChange> <label htmlFor="test3">Vote</label> </p></form> </div>
-// <button className= "btn btn-default" type="submit">Submit Vote</button>
-
-
-//could potentially put all the likes buttons at the bottom..
-// <div>
-//                 <button onClick={this.state.increment}>Book 1 <div> {this.state.counter}</div></button>
-//                 <button>Book 2</button>
-//                 <button>Book 3</button>
-//                 <button>Book 4</button>
-//                 <button>Book 5</button>
-//                 </div>

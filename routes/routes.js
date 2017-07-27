@@ -284,16 +284,17 @@ module.exports = function(app) {
     let key = keys.grkey
     let secret = keys.grsecret
 
-    let sample_user = 4085451;
+    let sample_user = 11152546;
     console.log("this is the selected user's shelf!");
     let dump = json => {
-    // res.json(json);
+    
 
     //looping through the books with .map in child vote//
     const books = json.GoodreadsResponse.books[0].book;
           
     res.json(JSON.stringify(books));
-      };
+
+    };
 
     gr = goodreads.client({ 'key': key, 'secret': secret });
         let shelfOptions = { 'userID': sample_user, 'shelf': 'to-read' }
@@ -301,7 +302,41 @@ module.exports = function(app) {
         let getShelf = gr.getSingleShelf(shelfOptions, dump);
         return getShelf;
 
-         })
+    })
+
+  //POST WINNING BOOK TO DATABASE//
+  app.post("/api/book_winner", function(req, res) {
+    var title = req.body.title
+    db.Book.findOne({
+            where:{
+                title: req.body.title
+            }
+  }).then(function(data){
+            if(data){
+                var book_id = data.dataValues.id;
+                db.Book.findOne({
+                    where:{
+                        id : book_id
+                    }
+                }).then(function(data){
+                    console.log("BOOK going to db: ", req.body.title);
+                    console.log(data);
+                        db.Book.update({
+                            Title: req.body.title
+                        }, {
+                            where: {
+                                id: book_id
+                            }
+                        }).then(function() {
+                            res.send(true);
+
+                    });
+                });
+            };
+      });
+  });
+
+  ////update book title in book table and current book in member table
 
   app.post("/api/status", function(req, res) {
     require('connect-ensure-login').ensureLoggedIn('/login'),
