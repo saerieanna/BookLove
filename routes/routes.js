@@ -104,7 +104,7 @@ module.exports = function(app) {
           }
         },
         order: [['updatedAt', 'DESC']],
-        limit:3,
+        limit:5,
         include:[{model:db.Member},{model:db.Book}],
       }).then(function(data){
         var comments=[];
@@ -309,34 +309,41 @@ module.exports = function(app) {
 
   //POST WINNING BOOK TO DATABASE//
   app.post("/api/book_winner", function(req, res) {
-    var title = req.body.title
-    db.Book.findOne({
-            where:{
-                title: req.body.title
-            }
-  }).then(function(data){
-            if(data){
-                var book_id = data.dataValues.id;
-                db.Book.findOne({
-                    where:{
-                        id : book_id
-                    }
-                }).then(function(data){
-                    console.log("BOOK going to db: ", req.body.title);
-                    console.log(data);
-                        db.Book.update({
-                            Title: req.body.title
-                        }, {
-                            where: {
-                                id: book_id
-                            }
-                        }).then(function() {
-                            res.send(true);
+    var title = req.body.book;
+    console.log(title)
+      db.Book.create({
+        title:title,
+        chapters:10
+      }).then(function(data){
+        res.json(data);
+      })
+  //   db.Book.create({
+  //           where:{
+  //               title: req.body.title
+  //           }
+  // }).then(function(data){
+  //           if(data){
+  //               var book_id = data.dataValues.id;
+  //               db.Book.findOne({
+  //                   where:{
+  //                       id : book_id
+  //                   }
+  //               }).then(function(data){
+  //                   console.log("BOOK going to db: ", req.body.title);
+  //                   console.log(data);
+  //                       db.Book.update({
+  //                           Title: req.body.title
+  //                       }, {
+  //                           where: {
+  //                               id: book_id
+  //                           }
+  //                       }).then(function() {
+  //                           res.send(true);
 
-                    });
-                });
-            };
-      });
+  //                   });
+  //               });
+  //           };
+  //     });
   });
 
   ////update book title in book table and current book in member table

@@ -29,12 +29,11 @@ var vote = React.createClass({
 
     handleChange: function(event, data) {
     console.log("VALUE ================", data.value[0]);
-    this.setState({clickedBook: data.value[0] });
-    helpers.postBookWinner(this.state.clickedBook);
-   
+    // this.setState({clickedBook: data.value[0] }).bind(this);
+    helpers.postBookWinner(data.value[0]);
   },
 
-     handleSubmit: function(event) {
+    handleSubmit: function(event) {
     event.preventDefault();
     console.log("CLICKED Winner");
     
@@ -61,7 +60,6 @@ var vote = React.createClass({
                         <h5 className=" light-blue darken-3">Average rating: </h5> { book.average_rating } 
                         <h5 className=" light-blue darken-1">Description: </h5> { book.description } 
                         <Button type="button" 
-                                onSubmit={this.handleSubmit} 
                                 value={book.title}
                                 onClick={this.handleChange}>Winner</Button>
                 </div>
