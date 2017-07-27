@@ -38,21 +38,9 @@ const nexmo = new Nexmo({
   	  apiSecret: keys.apiSecret
 });
 
-// TESTING NEXMO
-// function sendTextMessage() {
-// nexmo.message.sendSms(
-//   12013517019, '13125604191', 'Hey girl!',
-//     (err, responseData) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         console.dir(responseData);
-//       }
-//     }
-//  );
-// }
 
 // Setting up login session
+// =============================================================|
 app.use(cookieParser())
 app.use(session({ secret: 'friedbanana', resave: false, saveUninitialized: false }))
 app.use(flash());

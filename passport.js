@@ -1,4 +1,3 @@
-// NEED TO ADD: USER FEEDBACK MECHANISM ON FRONT-END. SEE {{MESSAGE}} IN PLAUDIT LANDING.HANDLEBARS. We have a "message" here but it does not have a designated spot in login.js
 
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
