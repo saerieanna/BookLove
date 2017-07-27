@@ -37,7 +37,7 @@ var ChapterModal = React.createClass({
   handleClick: function(event) {
     axios.get("/phone").then(function(response) {
       console.log("axios phone results", response);
-       window.location.href="/profile";
+       window.location.href="/vote";
       });
   },
 
