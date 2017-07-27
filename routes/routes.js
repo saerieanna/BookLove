@@ -375,24 +375,53 @@ module.exports = function(app) {
         db.Member.findAll({
           attributes: ['phone']
       }).then(function(data){
-        console.log("PHONE NUMBERS ", data);
-        // add function here
+        db.Member.update({
+          current_book: 0
+        }, {
+          where: {
+            id: req.user.id
+          }
+        }).then(function(data) {
+        // Calling Nexmo for SMS
+        // Need to handle throttling error in future build
         const Nexmo = require('nexmo');
-const nexmo = new Nexmo({
-    apiKey: keys.apiKey,
-      apiSecret: keys.apiSecret
-});
-        nexmo.message.sendSms(
-          12013517019, '13125604191', user +' finished ' +book,
+        const nexmo = new Nexmo({
+          apiKey: keys.apiKey,
+          apiSecret: keys.apiSecret
+      });
+      
+      nexmo.message.sendSms(
+          12013517019, '15172315669', user +' finished ' +book ,
+          (err, responseData) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.dir(responseData);
+        }
+      });
+
+      nexmo.message.sendSms(
+          12013517019, '13125604191', user +' finished ' +book ,
           (err, responseData) => {
       if (err) {
         console.log(err);
       } else {
         console.dir(responseData);
-    }
-});
+      }
+    });
+
+      nexmo.message.sendSms(
+          12013517019, '13126468613', user +' finished ' +book ,
+          (err, responseData) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.dir(responseData);
+      }
+    });
         res.json(data);
     });
+   });
   });
 });
 
