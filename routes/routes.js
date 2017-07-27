@@ -318,7 +318,7 @@ module.exports = function(app) {
           }
         }
       }).then(function(data){
-        if(!data){
+        if(data){
           db.Book.create({
           title:title,
           chapters:10
