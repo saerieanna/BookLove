@@ -12,42 +12,11 @@ const headerStyle = {
   backgroundColor: '#80cbc4',
 }
 
-// var keys = require("../../config/keys.js");
-
-// const Nexmo = require('nexmo');
-// const nexmo = new Nexmo({
-//     apiKey: keys.apiKey,
-//     apiSecret: keys.apiSecret
-// });
-
-// // TESTING NEXMO
-// function sendTextMessage() {
-// nexmo.message.sendSms(
-//   12013517019, '13125604191', 'Hey girl!',
-//     (err, responseData) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         console.dir(responseData);
-//       }
-//     }
-//  );
-// }
-
- // sendTextMessage: function() {
- //    alert("Sending text message!");
- //  };
-
-function sendTextMessage() {
-    alert("Hi there!");
-  };
-
 var ChapterModal = React.createClass({
 
   getInitialState: function() {
     return {
       chapterUpdate: "",
-      // email: "",
     }
   },
 
@@ -66,8 +35,9 @@ var ChapterModal = React.createClass({
   },
 
   handleClick: function(event) {
-    alert("Sending text message!");
-    sendTextMessage();
+    axios.get("/phone").then(function(response) {
+      console.log("axios phone results", response);
+      });
   },
 
 

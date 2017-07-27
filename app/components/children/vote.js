@@ -47,37 +47,70 @@ var vote = React.createClass({
         
         var titles = this.state.shelf.slice(0, 5).map(book => {
              return( 
-                <div key = {book.title} className = "display-linebreak" className="flow-text"> 
-                    <h4 className="flow-text" className="card-panel purple lighten-2"></h4> 
+
+
+            <div className="ui unstackable items" key={ book.title}>
+                <div className="item">
+                    <div className="image">
                         <a href={book.link[0]} target="_blank"> 
-                            <img className = "display-linebreak" src= {book.image_url} />
+                    <img src= {book.image_url} />
                         </a>
-                    <div>
-                        <Rating icon='heart' defaultRating={1} maxRating={5} /> 
-                    </div>  
-                        <h5 className=" light-blue lighten-3"></h5> { book.title } 
-                        <h5 className="light-blue lighten-1" >Author: </h5> { book.authors[0].author[0].name} 
-                        <h5 className=" light-blue darken-3">Average rating: </h5> { book.average_rating } 
-                        <h5 className=" light-blue darken-1">Description: </h5> { book.description } 
-                        <Button type="button" 
-                                value={book.title}
-                                onClick={this.handleChange}>Winner</Button>
+
+                    <span></span>
+                    <span></span>
+                    <div className="hearts">
+                            <Rating icon='heart' defaultRating={1} maxRating={5} />
+                     </div>
+                      <Button type="button" className="ui basic button"
+                        onSubmit={this.handleSubmit} 
+                        value={book.title} 
+                        onClick={this.handleChange}>
+                        <i className="empty heart icon"></i>Winner
+                    </Button>
+                    </div>
+                    <div className="content">
+                        <a className="header" href={book.link[0]} target="_blank"> { book.title }</a>
+                        <div className="extra">
+                            <p>Average rating: {book.average_rating}</p>
+                        </div>
+                        <div className="meta">
+                            <span>Author: 
+                                <a className="authorLink" href={book.authors[0].author[0].link } target="_blank"> { book.authors[0].author[0].name} </a>
+                            </span>
+                        </div>
+                        <div className="description">
+                            <p>Description: {book.description}</p>
+                        </div>
+
+                    </div>
+
+
                 </div>
-                ) 
-             })
+                 <div className="ui divider">
+                 </div>
+
+            </div>
+
+            ) 
+        })
+
+
+
       
              return (
+                <div className="outerVote">
                 <div className="register flow-text">
                     <br></br>
                     <br></br>
                         <div className="directVote" 
                              className="flow-text">
-                                <h2 className="flow-text">Please rank each book between one and five hearts.  Most hearts = #Winner </h2>
+                                <h2 className="flow-text center-align instruction">Please rank each book between one and five hearts.  Love Wins. </h2>
                         </div>
                     <br></br>
                     <br></br>
                  <div className="flow-text renderApiData"> {titles} </div> 
                
+                </div>
                 </div>
           
             )

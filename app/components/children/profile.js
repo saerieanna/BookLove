@@ -1,5 +1,3 @@
-// TO-DO: 
-// Display book title instead of book id
 
 var React = require("react");
 
@@ -13,7 +11,8 @@ var ChapterModal = require("./chaptermodal.js");
 
 import { Image, List, Container, Progress, Button, Header, Icon, Modal } from 'semantic-ui-react';
 
-
+// Styling our component
+// ======================================|
 const divStyle = {
   padding: 20,
   backgroundColor: '#80cbc4',
@@ -33,12 +32,8 @@ const nameStyle = {
   color: '#ffffff',
 };
 
-
-// <Progress value={this.state.chapter} total={this.state.chapters} progress='ratio' indicating />
-
 var profile = React.createClass({
 
-  // Set initial variables for the component
   getInitialState: function() {
     return {
       first_name: "",
@@ -68,26 +63,38 @@ var profile = React.createClass({
       chapter: data.chapter,
       });
     }.bind(this));
-  },
 
-  // need access to book title and total chapters
+    axios.get("/book").then(function(response) {
+      console.log("axios book results", response);
+      var info = response.data;
+      console.log("INFO", info);
+      this.setState({
+        chapters: info.chapters,
+        book_title: info.title,
+      });
+    }.bind(this));
+  },
 
   render: function() {
     return(
       <div style={divStyle}>
        <Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
          <h2 style={nameStyle}>{this.state.first_name + " " + this.state.last_name}</h2>
-        <div style={listStyle} className="container">
-          <ChapterModal />
-          <Progress percent={this.state.chapter / this.state.chapters * 100} indicating size='medium' />
+          <div style={listStyle} className="container">
+          
+          {/* Conditional rendering based on member's association to book */}
+          {this.state.current_book !=0 ? <ChapterModal /> : null}
+          
+          {this.state.current_book !=0 ? <Progress percent={(this.state.chapter / this.state.chapters) * 100} indicating size='medium' /> : null}
+          
           <List animated>
             <List.Item icon='book' content={
               this.state.current_book != 0 ?
-              ('I am reading ' +this.state.current_book) :
+              ('I am reading ' +this.state.book_title) :
               ('I\'m not reading a book right now. Sad!')}/>
 
             <List.Item icon='bookmark' content={
-              this.state.current_book != 0 ?
+              this.state.current_book != 0 && this.state.chapter !=0 ?
               ('I just finished chapter ' + " " + this.state.chapter +"!") :
               ('This is where we\'ll track my chapter progress')
             }/>

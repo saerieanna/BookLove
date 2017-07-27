@@ -1,23 +1,16 @@
-// Include React as a dependency
+
 var React = require("react");
 
-// Including the Link component from React Router to navigate within our application without full page reloads
-// https://github.com/ReactTraining/react-router/blob/master/docs/API.md#link
 var Link = require("react-router").Link;
 
-
-
-// Create the Main component
 var Main = React.createClass({
 
   render: function() {
 
     return (
-      // We can only render a single div. So we need to group everything inside of this main-container one
       <div>
         <nav>
             <div className="nav-wrapper">
-              <a href="#" data-activates="slide-out" className="button-collapse show-on-large left"><i className="material-icons">menu</i></a>
               <a href="/" className="brand-logo center hoverable white-text">Book Love</a>
               <ul id="nav-mobile" className="right">
                 <li className="tab col s4 hoverable white-text"><Link to="/register">register</Link></li>
@@ -40,5 +33,4 @@ var Main = React.createClass({
   }
 });
 
-// Export the module back to the route
 module.exports = Main;
