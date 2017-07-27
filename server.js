@@ -38,21 +38,19 @@ const nexmo = new Nexmo({
   	  apiSecret: keys.apiSecret
 });
 
-// sendTextMessage();
-
 // TESTING NEXMO
-function sendTextMessage() {
-nexmo.message.sendSms(
-  12013517019, '13125604191', 'Hey girl!',
-    (err, responseData) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.dir(responseData);
-      }
-    }
- );
-}
+// function sendTextMessage() {
+// nexmo.message.sendSms(
+//   12013517019, '13125604191', 'Hey girl!',
+//     (err, responseData) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         console.dir(responseData);
+//       }
+//     }
+//  );
+// }
 
 // Setting up login session
 app.use(cookieParser())

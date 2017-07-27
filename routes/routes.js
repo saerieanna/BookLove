@@ -339,8 +339,7 @@ module.exports = function(app) {
       });
   });
 
-  ////update book title in book table and current book in member table
-
+  // update book title in book table and current book in member table
   app.post("/api/status", function(req, res) {
     require('connect-ensure-login').ensureLoggedIn('/login'),
      function(req,res) {
@@ -356,6 +355,42 @@ module.exports = function(app) {
       res.json(dbMember);
     });
   });
+
+  app.get("/book",
+    require('connect-ensure-login').ensureLoggedIn('/login'),
+    function(req,res){
+      db.Book.findOne({
+        where:{
+          id: req.user.id
+          }
+      }).then(function(data){
+        res.json(data);
+    });
+  });  
+
+  // Send whole team a text message when a user finishes book.
+  app.get("/phone",
+    require('connect-ensure-login').ensureLoggedIn('/login'),
+    function(req,res){
+    var email = req.user.email;
+    var user = req.user.first_name;
+      db.Book.findOne({
+        attributes: ['title'],
+          where: {
+            id: req.user.id
+        }
+      }).then(function(data) {
+        var book = data.dataValues.title;
+        console.log("BOOK ", book);
+        db.Member.findAll({
+          attributes: ['phone']
+      }).then(function(data){
+        console.log("PHONE NUMBERS ", data);
+
+        res.json(data);
+    });
+  });
+});
 
   // OTHER GET REQUETS THAT WE USE FOR TESTING
   // app.get("/api/members", function(req, res) {
