@@ -21,13 +21,6 @@ var Main = React.createClass({
 
         {this.props.children}
 
-        <footer>
-          <hr />
-          <p className="pull-right">
-            <i className="fa fa-github" aria-hidden="true"></i>
-            Awesome board to discuss books!&nbsp;&nbsp;&nbsp;&nbsp;
-          </p>
-        </footer>
       </div>
     );
   }
