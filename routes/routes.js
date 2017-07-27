@@ -403,7 +403,8 @@ module.exports = function(app) {
           attributes: ['phone']
       }).then(function(data){
         db.Member.update({
-          current_book: 0
+          current_book: 0,
+          chapter: 0
         }, {
           where: {
             id: req.user.id
