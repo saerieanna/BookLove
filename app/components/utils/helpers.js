@@ -45,7 +45,8 @@ var helper = {
     var email = { email: email};
     return axios.post("/api/send_email", email)
     .then(function(response) {
-        console.log("Password from helper: ", response.data.password)
+      return response.data.id
+        console.log("Password from helper: ", response.data.id)
       });
   },
 
@@ -53,7 +54,12 @@ var helper = {
     var bookWinner = { book: book};
     return axios.post("/api/book_winner", bookWinner)
     .then(function(response) {
-      console.log("Book Winner Stored", response.data.title);
+      var currentbook={id:response.data.id}
+      return currentbook;
+    }).then(function(data){
+      return axios.post("/api/updateCurrentbook",data).then(function(response){
+        window.location.href="/profile";
+      })
     });
   },  
 

@@ -305,18 +305,45 @@ module.exports = function(app) {
         let getShelf = gr.getSingleShelf(shelfOptions, dump);
         return getShelf;
 
-    })
+    });
 
   //POST WINNING BOOK TO DATABASE//
   app.post("/api/book_winner", function(req, res) {
     var title = req.body.book;
     console.log(title)
-      db.Book.create({
-        title:title,
-        chapters:10
+      db.Member.findAll({
+        where: {
+          current_book:{
+            $ne:0
+          }
+        }
       }).then(function(data){
+        if(!data){
+          db.Book.create({
+          title:title,
+          chapters:10
+        }).then(function(data){
         res.json(data);
-      })
+        })
+      }else{
+        res.json(false);
+      }
+  });
+      
+
+  app.post("/api/updateCurrentbook",function(req,res){
+    var id=req.body.id;
+    console.log("id is" + id);
+    db.Member.update({
+      current_book:id
+    },{ 
+      where:{
+      current_book:0
+      }
+    }).then(function(data){
+      res.json(data);
+    })
+  });
   //   db.Book.create({
   //           where:{
   //               title: req.body.title
@@ -351,7 +378,7 @@ module.exports = function(app) {
     function(req,res){
       db.Book.findOne({
         where:{
-          id: req.user.id
+          id: req.user.current_book
           }
       }).then(function(data){
         res.json(data);
@@ -367,7 +394,7 @@ module.exports = function(app) {
       db.Book.findOne({
         attributes: ['title'],
           where: {
-            id: req.user.id
+            id: req.user.current_book
         }
       }).then(function(data) {
         var book = data.dataValues.title;
