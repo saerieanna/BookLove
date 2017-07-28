@@ -7,6 +7,8 @@
 INSERT INTO `book_love`.`members` (`first_name`, `last_name`, `email`, `photo_path`) VALUES ('Rebecca', 'Palmore', 'rkpalmore@gmail.com', '/assets/imgs/profilePhotos/RebeccaPalmore.png');
 INSERT INTO `book_love`.`members` (`first_name`, `last_name`, `email`, `photo_path`) VALUES ('Yilin', 'Xu', 'yellen10@gmail.com', '/assets/imgs/profilePhotos/YilinXu.png');
 INSERT INTO `book_love`.`members` (`first_name`, `last_name`, `email`, `photo_path`) VALUES ('Sarah', 'Mandley', 'saerieanna@gmail.com', '/assets/imgs/profilePhotos/SarahMandley.png');
+INSERT INTO `book_love`.`members` (`first_name`, `last_name`, `email`, `photo_path`) VALUES ('Book Love', 'Guest', 'teambooklove@gmail.com', '/assets/imgs/profilePhotos/BookLoveGuest.png');
+
 
 
 // TEST DATA FOR BOOK TABLE
