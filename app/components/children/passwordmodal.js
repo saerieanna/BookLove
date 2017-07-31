@@ -30,7 +30,11 @@ var PasswordModal = React.createClass({
   handleSubmit: function(event) {
     event.preventDefault();
     console.log("CLICKED");
+    if (this.state.email === 'teambooklove@gmail.com') {
+      alert("This feature is disabled. Your password is 'guest'. Please log in.");
+    } else {
     helpers.postSendEmail(this.state.email)
+    }
   },
 
   render: function() {
